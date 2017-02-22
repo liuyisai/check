@@ -32,5 +32,17 @@ namespace check
         {
 
         }
+
+        private void skinbutton1_Click(object sender, EventArgs e)
+        {
+            Check ch = new Check();
+            ch.Show();
+        }
+
+        private void skinButton2_Click(object sender, EventArgs e)
+        {
+            Count co = new Count();
+            co.Show();
+        }
     }
 }

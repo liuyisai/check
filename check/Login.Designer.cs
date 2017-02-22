@@ -70,6 +70,7 @@
             this.skinButton1.Size = new System.Drawing.Size(38, 32);
             this.skinButton1.TabIndex = 4;
             this.skinButton1.UseVisualStyleBackColor = false;
+            this.skinButton1.Click += new System.EventHandler(this.skinButton1_Click);
             // 
             // skinTextBox2
             // 
@@ -102,7 +103,7 @@
             this.skinTextBox2.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
             this.skinTextBox2.SkinTxt.Location = new System.Drawing.Point(5, 5);
             this.skinTextBox2.SkinTxt.Name = "BaseText";
-            this.skinTextBox2.SkinTxt.Size = new System.Drawing.Size(146, 18);
+            this.skinTextBox2.SkinTxt.Size = new System.Drawing.Size(123, 18);
             this.skinTextBox2.SkinTxt.TabIndex = 0;
             this.skinTextBox2.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.skinTextBox2.SkinTxt.WaterText = "请输入账户名";
@@ -146,7 +147,7 @@
             this.skinTextBox1.SkinTxt.Size = new System.Drawing.Size(123, 18);
             this.skinTextBox1.SkinTxt.TabIndex = 0;
             this.skinTextBox1.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            this.skinTextBox1.SkinTxt.WaterText = "";
+            this.skinTextBox1.SkinTxt.WaterText = "请输入密码";
             this.skinTextBox1.TabIndex = 6;
             this.skinTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.skinTextBox1.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
