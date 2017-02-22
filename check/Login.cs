@@ -7,14 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CCWin;
 
 namespace check
 {
-    public partial class Form1 : Form
+    public partial class Login : Skin_Mac
     {
-        public Form1()
+        public Login()
         {
             InitializeComponent();
         }
+        
     }
 }
