@@ -80,6 +80,7 @@
             this.skinButton1.TabIndex = 1;
             this.skinButton1.Text = "→";
             this.skinButton1.UseVisualStyleBackColor = false;
+            this.skinButton1.Click += new System.EventHandler(this.skinButton1_Click);
             // 
             // skinTextBox1
             // 

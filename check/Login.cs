@@ -16,7 +16,6 @@ namespace check
         public Login()
         {
             InitializeComponent();
-            //SQL.SQL.getAllPlatform();
         }
 
         private void skinButton1_Click(object sender, EventArgs e)
