@@ -44,5 +44,42 @@ namespace check
             Count co = new Count();
             co.Show();
         }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            #region 状态栏
+
+
+
+
+            //系统时间
+            toolStripTextBox4.Text = DateTime.Now.ToLocalTime().ToString();
+
+
+
+            #endregion
+
+        }
+
+
+      
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
