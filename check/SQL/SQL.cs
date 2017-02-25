@@ -12,28 +12,28 @@ namespace check.SQL
 {
     class SQL
     {
-        public static DataTable getAllPlatform()
-        {
-            try
-            {
-                string sqlStr = "select * from Platform";
+        //public static DataTable getAllPlatform()
+        //{
+        //    try
+        //    {
+        //        string sqlStr = "select * from Platform";
 
-                DataSet dt = SqlHelper.ExecuteDataset(SqlHelper.GetConnSting(), CommandType.Text, sqlStr);
+        //        DataSet dt = SqlHelper.ExecuteDataset(SqlHelper.GetConnSting(), CommandType.Text, sqlStr);
 
-                if (dt.Tables[0].Rows.Count > 0)
-                {
-                    return dt.Tables[0];
-                }
-                return null;
-            }
-            catch (SyntaxErrorException e)
-            {
-                ErrorHandle.showError(e);
+        //        if (dt.Tables[0].Rows.Count > 0)
+        //        {
+        //            return dt.Tables[0];
+        //        }
+        //        return null;
+        //    }
+        //    catch (SyntaxErrorException e)
+        //    {
+        //        ErrorHandle.showError(e);
 
-                return null;
+        //        return null;
 
-            }
+        //    }
 
-        }
+        //}
     }
 }
