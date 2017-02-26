@@ -17,6 +17,10 @@ namespace check
         public Count()
         {
             InitializeComponent();
+            skinDataGridView1.Rows.Add("1",1);
+            skinDataGridView1.Rows.Add("2", 2);
+            skinDataGridView1.Rows.Add("3", 3);
+            skinDataGridView1.Rows[1].Visible = false;
         }
 
         private void skinButton1_Click(object sender, EventArgs e)
@@ -43,13 +47,20 @@ namespace check
             for (int i = 0; i < skinDataGridView1.ColumnCount; i++)
             { worksheet.Cells[1, i + 1] = skinDataGridView1.Columns[i].HeaderText; }
             //写入数值
+            int rr = 0;
             for (int r = 0; r < skinDataGridView1.Rows.Count; r++)
             {
-                for (int i = 0; i < skinDataGridView1.ColumnCount; i++)
+               
+                if (skinDataGridView1.Rows[r].Visible)
                 {
-                    worksheet.Cells[r + 2, i + 1] = skinDataGridView1.Rows[r].Cells[i].Value;
+                   
+                    for (int i = 0; i < skinDataGridView1.ColumnCount; i++)
+                    {
+                        worksheet.Cells[rr + 2, i + 1] = skinDataGridView1.Rows[r].Cells[i].Value;
+                    }
+                    rr++;
+                    System.Windows.Forms.Application.DoEvents();
                 }
-                System.Windows.Forms.Application.DoEvents();
             }
             worksheet.Columns.EntireColumn.AutoFit();//列宽自适应
             MessageBox.Show(fileName + "资料保存成功", "提示", MessageBoxButtons.OK);
