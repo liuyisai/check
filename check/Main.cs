@@ -47,16 +47,7 @@ namespace check
 
         private void Main_Load(object sender, EventArgs e)
         {
-            #region 状态栏
-
-
-
-
-           
-
-
-            #endregion
-
+        
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -76,8 +67,8 @@ namespace check
             string stateName="";
             string checkTime="";
             skinTextBox1.Text = "";
-            skinComboBox3.SelectedIndex = -1;
-            skinComboBox4.SelectedIndex = -1;
+            skinComboBox3.SelectedIndex = 0;
+            skinComboBox4.SelectedIndex = 0;
                 string meetTime = skinDateTimePicker1.Text;
                 string meetID = this.skinComboBox1.SelectedValue.ToString();
                 DataTable dt2 = check.SQL.SQL.getMeeter(meetID);
@@ -113,7 +104,7 @@ namespace check
                                 break;}
 
                         }
-                        skinDataGridView1.Rows.Add(dt2.Rows[i]["uId"], dt2.Rows[i]["delegationName"], identityName,stateName,checkTime );
+                        skinDataGridView1.Rows.Add(dt2.Rows[i]["uId"], dt2.Rows[i]["delegationName"].ToString(), identityName,stateName,checkTime );
                         
                     }
                     
@@ -155,12 +146,136 @@ namespace check
                 this.skinComboBox1.Tag = "1";
                 this.skinDataGridView1.Rows.Clear();
                 skinTextBox1.Text = "";
-                skinComboBox3.SelectedIndex = -1;
-                skinComboBox4.SelectedIndex = -1;
+                skinComboBox3.SelectedIndex = 0;
+                skinComboBox4.SelectedIndex = 0;
             }
         }
 
+        private void skinTextBox1_Paint(object sender, PaintEventArgs e)
+        {
+            for (int i = 0; i < skinDataGridView1.Rows.Count;i++ )
+            {
+                int j = skinDataGridView1.Rows[i].Cells[1].Value.ToString().IndexOf(skinTextBox1.Text);
+                if (j > -1)
+                {
+                    skinDataGridView1.Rows[i].Visible = true;
+                }
+                else 
+                {
+                    skinDataGridView1.Rows[i].Visible = false;
+                }
+                
 
+
+            }
+        }
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                for (int i = 0; i < skinDataGridView1.Rows.Count; i++)
+                {
+                    int j = skinDataGridView1.Rows[i].Cells[1].Value.ToString().IndexOf(skinTextBox1.Text);
+                    if (j > -1 && (skinComboBox3.SelectedItem.ToString() == skinDataGridView1.Rows[i].Cells[2].Value.ToString() || skinComboBox3.SelectedIndex == 0) && (skinComboBox4.SelectedItem.ToString() == skinDataGridView1.Rows[i].Cells[3].Value.ToString()||skinComboBox4.SelectedIndex==0))
+                    {
+                        skinDataGridView1.Rows[i].Visible = true;
+
+                    }
+                    else
+                    {
+                        skinDataGridView1.Rows[i].Visible = false;
+                    }
+                }
+            }
+            return base.ProcessDialogKey(keyData);
+        }
+
+        private void skinComboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < skinDataGridView1.Rows.Count; i++)
+            {
+                int a = skinDataGridView1.Rows[i].Cells[1].Value.ToString().IndexOf(skinTextBox1.Text);
+                int j = skinDataGridView1.Rows[i].Cells[2].Value.ToString().IndexOf(skinComboBox3.SelectedItem.ToString());
+                if (j > -1 && a > -1 && (skinComboBox4.SelectedItem.ToString() == skinDataGridView1.Rows[i].Cells[3].Value.ToString() || skinComboBox4.SelectedIndex == 0))
+                {
+                    skinDataGridView1.Rows[i].Visible = true;
+                }
+                else if (skinComboBox3.SelectedIndex == 0 && a > -1 && (skinComboBox4.SelectedItem.ToString() == skinDataGridView1.Rows[i].Cells[3].Value.ToString() || skinComboBox4.SelectedIndex == 0))
+                {
+
+                    skinDataGridView1.Rows[i].Visible = true;
+
+
+                }
+                else
+                {
+                    skinDataGridView1.Rows[i].Visible = false;
+                }
+
+
+                
+            }
+        }
+
+        private void skinComboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < skinDataGridView1.Rows.Count; i++)
+            {
+                int a = skinDataGridView1.Rows[i].Cells[1].Value.ToString().IndexOf(skinTextBox1.Text);
+                int j = skinDataGridView1.Rows[i].Cells[3].Value.ToString().IndexOf(skinComboBox4.SelectedItem.ToString());
+                if (j > -1 && a>-1 && (skinComboBox3.SelectedItem.ToString() == skinDataGridView1.Rows[i].Cells[2].Value.ToString() || skinComboBox3.SelectedIndex == 0))
+                {
+                    skinDataGridView1.Rows[i].Visible = true;
+                }
+
+                else if (skinComboBox4.SelectedIndex == 0 && a>-1  && (skinComboBox3.SelectedItem.ToString() == skinDataGridView1.Rows[i].Cells[2].Value.ToString() || skinComboBox3.SelectedIndex == 0))
+                {
+
+                    skinDataGridView1.Rows[i].Visible = true;
+
+
+                }
+                else
+                {
+                    skinDataGridView1.Rows[i].Visible = false;
+                }
+
+            }
+            //if (skinTextBox1.Text != "")
+            //{
+            //    for (int i = 0; i < skinDataGridView1.Rows.Count; i++)
+            //    {
+            //        int j = skinDataGridView1.Rows[i].Cells[1].Value.ToString().IndexOf(skinTextBox1.Text);
+            //        if (j > -1 && skinDataGridView1.Rows[i].Cells[2].Value.ToString() == skinComboBox3.SelectedItem.ToString() && skinDataGridView1.Rows[i].Cells[3].Value.ToString() == skinComboBox4.SelectedItem.ToString())
+            //        {
+            //            skinDataGridView1.Rows[i].Visible = true;
+
+            //        }
+            //        else
+            //        {
+            //            skinDataGridView1.Rows[i].Visible = false;
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    for (int i = 0; i < skinDataGridView1.Rows.Count; i++)
+            //    {
+                   
+            //        if ( skinDataGridView1.Rows[i].Cells[2].Value.ToString() == skinComboBox3.SelectedItem.ToString() && skinDataGridView1.Rows[i].Cells[3].Value.ToString() == skinComboBox4.SelectedItem.ToString())
+            //        {
+            //            skinDataGridView1.Rows[i].Visible = true;
+
+            //        }
+            //        else
+            //        {
+            //            skinDataGridView1.Rows[i].Visible = false;
+            //        }
+            //    }
+            //}
+
+        }
       
           
 
