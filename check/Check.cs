@@ -17,5 +17,10 @@ namespace check
         {
             InitializeComponent();
         }
+
+        private void skinButton1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

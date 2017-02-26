@@ -200,6 +200,7 @@
             this.skinDataGridView1.HeadSelectForeColor = System.Drawing.SystemColors.HighlightText;
             this.skinDataGridView1.Location = new System.Drawing.Point(36, 57);
             this.skinDataGridView1.Name = "skinDataGridView1";
+            this.skinDataGridView1.ReadOnly = true;
             this.skinDataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.skinDataGridView1.RowHeadersVisible = false;
             this.skinDataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -220,31 +221,37 @@
             // 
             this.Column1.HeaderText = "代表团";
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "正式代表";
             this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "列席代表";
             this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "特邀代表";
             this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "应到人数";
             this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
             // 
             // Column6
             // 
             this.Column6.HeaderText = "未到人数";
             this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
             // 
             // skinButton1
             // 

@@ -80,6 +80,7 @@
             this.skinButton1.TabIndex = 1;
             this.skinButton1.Text = "→";
             this.skinButton1.UseVisualStyleBackColor = false;
+            this.skinButton1.Click += new System.EventHandler(this.skinButton1_Click);
             // 
             // skinTextBox1
             // 
@@ -115,11 +116,10 @@
             this.skinTextBox1.SkinTxt.Name = "BaseText";
             this.skinTextBox1.SkinTxt.Size = new System.Drawing.Size(159, 34);
             this.skinTextBox1.SkinTxt.TabIndex = 0;
-            this.skinTextBox1.SkinTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.skinTextBox1.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.skinTextBox1.SkinTxt.WaterText = "";
             this.skinTextBox1.TabIndex = 0;
-            this.skinTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.skinTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.skinTextBox1.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.skinTextBox1.WaterText = "";
             this.skinTextBox1.WordWrap = true;
