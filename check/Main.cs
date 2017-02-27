@@ -175,21 +175,25 @@ namespace check
                                 break;}
                         }
                         skinDataGridView1.Rows.Add(dt2.Rows[i]["uName"], dt2.Rows[i]["delegationName"].ToString(), identityName, stateName, checkTime);
+
                         
                     }
                     
                 }
-            
         }
-
+       
 
 
         private void skinComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             if (skinComboBox1.Tag == "1")
             {
-                refresh(); 
-                 
+                refresh();
+                if (check.SQL.SQL.getIsMeeting(this.skinComboBox1.SelectedValue.ToString()) == null)
+                {
+                    check.SQL.SQL.insertNumber(this.skinComboBox1.SelectedValue.ToString());
+                }
             }
         }
 
@@ -208,6 +212,10 @@ namespace check
                 this.skinComboBox1.DisplayMember = "mName";
                 this.skinComboBox1.Tag = "1";
                 refresh();
+                if (check.SQL.SQL.getIsMeeting(this.skinComboBox1.SelectedValue.ToString()) == null)
+                {
+                    check.SQL.SQL.insertNumber(this.skinComboBox1.SelectedValue.ToString());
+                }
             }
             else
             {
@@ -376,6 +384,24 @@ namespace check
         private void timer2_Tick(object sender, EventArgs e)
         {
             refresh();
+            DataTable dtt = GetDgvToTable(skinDataGridView1);
+            #region  总体统计
+            int totalNum = 0;
+            int attendNum = 0;
+            int unattendNum = 0;
+            for (int i = 0; i < dtt.Rows.Count; i++)
+            {
+                totalNum++;
+                if (dtt.Rows[i]["Column6"].ToString() == "是")
+                {
+                    attendNum++;
+
+                }
+                else
+                    unattendNum++;
+            }
+            #endregion
+            check.SQL.SQL.updateNumber(totalNum.ToString(),attendNum.ToString(),unattendNum.ToString(),meetID);
             if (countFlag==1)
             {
                 co.refresh(GetDgvToTable(skinDataGridView1));

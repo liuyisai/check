@@ -104,10 +104,75 @@ namespace check.SQL
 
         }
 
+        public static DataTable getIsMeeting(string meetingId)//
+        {
+            try
+            {
+                string sqlStr = "select * from MeNumber where meetingId=" + meetingId;
 
+                DataSet dt = SqlHelper.ExecuteDataset(SqlHelper.GetConnSting(), CommandType.Text, sqlStr);
 
+                if (dt.Tables[0].Rows.Count > 0)
+                {
+                    return dt.Tables[0];
+                }
+                return null;
+            }
+            catch (SyntaxErrorException e)
+            {
+                ErrorHandle.showError(e);
 
+                return null;
+            }
 
+        }
+        public static int insertNumber(string meetingId)//根据二维码设置人员信息
+        {
+            //string totalNum, string arriveNum,string noarriveNum,
+            try
+            {
+                string sqlStr = "insert MeNumber(meetingId) values("+meetingId +")";
+                    //"insert MeNumber(nTotal,nReal,nNotArrive,meetingId) values('" + totalNum + "','" + arriveNum + "','" + noarriveNum + "'," + meetingId + ")";
+
+                int i = SqlHelper.ExecuteNonQuery(SqlHelper.GetConnSting(), CommandType.Text, sqlStr);
+
+                if (i > 0)
+                {
+                    return i;
+                }
+                return -1;
+            }
+            catch (SyntaxErrorException e)
+            {
+                ErrorHandle.showError(e);
+
+                return -1;
+            }
+
+        }
+
+        public static int updateNumber(string totalNum, string arriveNum, string noarriveNum, string meetingId)//根据二维码设置人员信息
+        {
+            try
+            {
+                string sqlStr = "update MeNumber set nTotal='" + totalNum + "',nReal='" + arriveNum + "',nNotArrive='" + noarriveNum + "' where meetingId=" + meetingId;
+
+                int i = SqlHelper.ExecuteNonQuery(SqlHelper.GetConnSting(), CommandType.Text, sqlStr);
+
+                if (i > 0)
+                {
+                    return i;
+                }
+                return -1;
+            }
+            catch (SyntaxErrorException e)
+            {
+                ErrorHandle.showError(e);
+
+                return -1;
+            }
+
+        }
 
 
 
