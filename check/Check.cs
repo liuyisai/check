@@ -14,6 +14,9 @@ namespace check
     public partial class Check :Skin_Mac
     {
         string MeetId;
+        public delegate void DelegateInsertMain();
+
+        public event DelegateInsertMain ChangeTimer;
         public Check(string meetId)
         {
             InitializeComponent();
@@ -103,7 +106,10 @@ namespace check
 
         private void Check_FormClosing(object sender, FormClosingEventArgs e)
         {
-           
+            ChangeTimer();
+            //Main m = new Main();
+            //shutdownRefresh shut = new shutdownRefresh(m.doRefresh);
+            //shut();
         }
 
    

@@ -11,6 +11,7 @@ using CCWin;
 
 namespace check
 {
+    public delegate void shutdownRefresh();
     public partial class Main : Skin_Mac
     {
         public Main()
@@ -42,16 +43,8 @@ namespace check
                 string Meet = skinComboBox1.SelectedValue.ToString();
                 Check ch = Check.CreateForm(Meet);
                 ch.Show();
-
-                timer2.Enabled = true;
-                if (ch.DialogResult==DialogResult.OK)
-                {
-                    
-                }
-                
-
-
-
+                ch.ChangeTimer+=ch_ChangeTimer;
+                timer2.Enabled = true;              
 
             }
             else 
@@ -60,15 +53,35 @@ namespace check
             }
            
         }
+
+        void ch_ChangeTimer()
+        {
+            refresh();
+            timer2.Enabled = false;
+
+        }
+
+        public  void doRefresh(string meetId)
+    {
+        meetID = meetId;
+        refresh();
+        timer2.Enabled = false;
+    }
+
+        int countFlag = 0;
+        Count co;
+
         private void skinButton2_Click(object sender, EventArgs e)
         {
             //Count co = new Count(MainDt);
-            Count co;
+           
             MainDt = GetDgvToTable(skinDataGridView1);
             if (MainDt.Rows .Count  != 0)
             {
                 co = Count.CreateForm(MainDt);
                 co.Show();
+                countFlag = 1;
+                co.ChangeFlag+=co_ChangeFlag;
 
             }
             else 
@@ -76,6 +89,10 @@ namespace check
                 MessageBox.Show("当前会议无数据，请重新选择会议！","提示信息",MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             }
            
+        }
+        void co_ChangeFlag() 
+        {
+            countFlag = 0;
         }
         public DataTable GetDgvToTable(DataGridView dgv)
         {
@@ -113,7 +130,8 @@ namespace check
 
         }
         DataTable MainDt=null ;
-        private void refresh() 
+        string meetID;
+        public void refresh() 
         {
             skinDataGridView1.Rows.Clear();
                 int identityCode;
@@ -125,7 +143,7 @@ namespace check
             skinComboBox3.SelectedIndex = 0;
             skinComboBox4.SelectedIndex = 0;
                 string meetTime = skinDateTimePicker1.Text;
-                string meetID = this.skinComboBox1.SelectedValue.ToString();
+                meetID = this.skinComboBox1.SelectedValue.ToString();
                 System .Data .DataTable dt2 = check.SQL.SQL.getMeeter(meetID);
                 if (dt2 != null)
                 {
@@ -358,6 +376,11 @@ namespace check
         private void timer2_Tick(object sender, EventArgs e)
         {
             refresh();
+            if (countFlag==1)
+            {
+                co.refresh(GetDgvToTable(skinDataGridView1));
+                
+            }
         }
       
           
