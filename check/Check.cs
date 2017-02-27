@@ -16,7 +16,7 @@ namespace check
         string MeetId;
         public delegate void DelegateInsertMain();
 
-        public event DelegateInsertMain ChangeTimer;
+        public event DelegateInsertMain ChangeTimer;  
         public Check(string meetId)
         {
             InitializeComponent();
@@ -62,33 +62,51 @@ namespace check
             string userPosition = "";
             string userChecktime = "";
             DataTable dt;
+            int i=0;
             userChecktime = DateTime.Now.ToLocalTime().ToString();
-
-            int i = check.SQL.SQL.setMeeterInfo(QRcode, userChecktime);
-
-
-            if (i == 1)
+             dt = check.SQL.SQL.getMeeterInfo(QRcode, MeetId);
+            if ((int)dt.Rows[0]["attendState"] == 0)
             {
-                dt = check.SQL.SQL.getMeeterInfo(QRcode, MeetId);
+                i = check.SQL.SQL.setMeeterInfo(QRcode, userChecktime);
+                if (i == 1)
+                {
+                    
+                    textBox1.Text = dt.Rows[0]["uName"].ToString();
+                    textBox2.Text = dt.Rows[0]["delegationName"].ToString();
+                    userPosition = QRcode.Substring(5, 2) + "排" + QRcode.Substring(7, 2) + "列";
+                    textBox3.Text = userPosition;
+                    textBox4.Text = userChecktime;
+                    skinTextBox1.Text = "";
+                    skinLabel5.Text = "签到成功！";
+
+                }
+                else
+                {
+                    skinLabel5.Text = "查无此人！";
+                    skinTextBox1.Text = "";
+                    textBox1.Text = "";
+                    textBox2.Text = "";
+                    textBox3.Text = "";
+                    textBox4.Text = "";
+
+                }
+            }
+            else 
+            {
                 textBox1.Text = dt.Rows[0]["uName"].ToString();
                 textBox2.Text = dt.Rows[0]["delegationName"].ToString();
                 userPosition = QRcode.Substring(5, 2) + "排" + QRcode.Substring(7, 2) + "列";
                 textBox3.Text = userPosition;
-                textBox4.Text = userChecktime;
-                skinTextBox1.Text = "";
-                skinLabel5.Text = "签到成功！";
+                textBox4.Text = dt.Rows[0]["attendTime"].ToString();
+                skinLabel5.Text = "此人已签到！";
+
 
             }
-            else
-            {
-                skinLabel5.Text = "查无此人！";
-                skinTextBox1.Text = "";
-                textBox1.Text = "";
-                textBox2.Text = "";
-                textBox3.Text = "";
-                textBox4.Text = "";
 
-            }
+            
+
+
+            
         }
         protected override bool ProcessDialogKey(Keys keyData)
         {

@@ -81,7 +81,7 @@ namespace check.SQL
             }
 
         }
-        public static int  setMeeterInfo(string QRcode,string checkTime)//根据二维码设置人员信息
+        public static int   setMeeterInfo(string QRcode,string checkTime)//根据二维码设置人员信息
         {
             try
             {
@@ -174,7 +174,28 @@ namespace check.SQL
 
         }
 
+        public static DataTable getCheck(string QRcode)//根据会议获取人员信息
+        {
+            try
+            {
+                string sqlStr = "select * from MePerAttend where QRcode='"+QRcode+"'";
 
+                DataSet dt = SqlHelper.ExecuteDataset(SqlHelper.GetConnSting(), CommandType.Text, sqlStr);
+
+                if (dt.Tables[0].Rows.Count > 0)
+                {
+                    return dt.Tables[0];
+                }
+                return null;
+            }
+            catch (SyntaxErrorException e)
+            {
+                ErrorHandle.showError(e);
+
+                return null;
+            }
+
+        }
 
 
 

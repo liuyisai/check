@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Check));
             this.skinGroupBox1 = new CCWin.SkinControl.SkinGroupBox();
             this.skinButton1 = new CCWin.SkinControl.SkinButton();
             this.skinTextBox1 = new CCWin.SkinControl.SkinTextBox();
             this.skinGroupBox2 = new CCWin.SkinControl.SkinGroupBox();
+            this.skinLabel5 = new CCWin.SkinControl.SkinLabel();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -41,7 +43,6 @@
             this.skinLabel3 = new CCWin.SkinControl.SkinLabel();
             this.skinLabel2 = new CCWin.SkinControl.SkinLabel();
             this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
-            this.skinLabel5 = new CCWin.SkinControl.SkinLabel();
             this.skinGroupBox1.SuspendLayout();
             this.skinGroupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -152,6 +153,18 @@
             this.skinGroupBox2.TitleRectBackColor = System.Drawing.Color.White;
             this.skinGroupBox2.TitleRoundStyle = CCWin.SkinClass.RoundStyle.All;
             // 
+            // skinLabel5
+            // 
+            this.skinLabel5.AutoSize = true;
+            this.skinLabel5.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabel5.BorderColor = System.Drawing.Color.White;
+            this.skinLabel5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel5.ForeColor = System.Drawing.Color.Red;
+            this.skinLabel5.Location = new System.Drawing.Point(92, 258);
+            this.skinLabel5.Name = "skinLabel5";
+            this.skinLabel5.Size = new System.Drawing.Size(0, 17);
+            this.skinLabel5.TabIndex = 9;
+            // 
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(95, 190);
@@ -229,18 +242,6 @@
             this.skinLabel1.Text = "姓名";
             this.skinLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // skinLabel5
-            // 
-            this.skinLabel5.AutoSize = true;
-            this.skinLabel5.BackColor = System.Drawing.Color.Transparent;
-            this.skinLabel5.BorderColor = System.Drawing.Color.White;
-            this.skinLabel5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel5.ForeColor = System.Drawing.Color.Red;
-            this.skinLabel5.Location = new System.Drawing.Point(92, 258);
-            this.skinLabel5.Name = "skinLabel5";
-            this.skinLabel5.Size = new System.Drawing.Size(0, 17);
-            this.skinLabel5.TabIndex = 9;
-            // 
             // Check
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -250,6 +251,8 @@
             this.Controls.Add(this.skinGroupBox2);
             this.Controls.Add(this.skinGroupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.ICoOffset = new System.Drawing.Point(5, 0);
             this.MaximizeBox = false;
             this.Name = "Check";
             this.Text = "Check";

@@ -165,6 +165,8 @@
             this.Controls.Add(this.skinButton1);
             this.Controls.Add(this.skinPictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.ICoOffset = new System.Drawing.Point(5, 0);
             this.MaximizeBox = false;
             this.Name = "Login";
             this.Text = "";
