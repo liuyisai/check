@@ -164,6 +164,8 @@
             this.Controls.Add(this.skinTextBox2);
             this.Controls.Add(this.skinButton1);
             this.Controls.Add(this.skinPictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "Login";
             this.Text = "";
             ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox1)).EndInit();

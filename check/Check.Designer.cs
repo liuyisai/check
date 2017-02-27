@@ -41,6 +41,7 @@
             this.skinLabel3 = new CCWin.SkinControl.SkinLabel();
             this.skinLabel2 = new CCWin.SkinControl.SkinLabel();
             this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
+            this.skinLabel5 = new CCWin.SkinControl.SkinLabel();
             this.skinGroupBox1.SuspendLayout();
             this.skinGroupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -128,6 +129,7 @@
             // 
             this.skinGroupBox2.BackColor = System.Drawing.Color.Transparent;
             this.skinGroupBox2.BorderColor = System.Drawing.Color.SkyBlue;
+            this.skinGroupBox2.Controls.Add(this.skinLabel5);
             this.skinGroupBox2.Controls.Add(this.textBox4);
             this.skinGroupBox2.Controls.Add(this.textBox3);
             this.skinGroupBox2.Controls.Add(this.textBox2);
@@ -227,6 +229,18 @@
             this.skinLabel1.Text = "姓名";
             this.skinLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // skinLabel5
+            // 
+            this.skinLabel5.AutoSize = true;
+            this.skinLabel5.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabel5.BorderColor = System.Drawing.Color.White;
+            this.skinLabel5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel5.ForeColor = System.Drawing.Color.Red;
+            this.skinLabel5.Location = new System.Drawing.Point(92, 258);
+            this.skinLabel5.Name = "skinLabel5";
+            this.skinLabel5.Size = new System.Drawing.Size(0, 17);
+            this.skinLabel5.TabIndex = 9;
+            // 
             // Check
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -235,8 +249,12 @@
             this.ClientSize = new System.Drawing.Size(292, 491);
             this.Controls.Add(this.skinGroupBox2);
             this.Controls.Add(this.skinGroupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "Check";
             this.Text = "Check";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Check_FormClosing);
+            this.Load += new System.EventHandler(this.Check_Load);
             this.skinGroupBox1.ResumeLayout(false);
             this.skinGroupBox2.ResumeLayout(false);
             this.skinGroupBox2.PerformLayout();
@@ -258,6 +276,7 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
+        private CCWin.SkinControl.SkinLabel skinLabel5;
 
     }
 }
