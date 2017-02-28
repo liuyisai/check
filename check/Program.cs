@@ -18,14 +18,16 @@ namespace check
             Application.SetCompatibleTextRenderingDefault(false);
             Login login = new Login();
             login.ShowDialog();
-            if (login.DialogResult == DialogResult.OK)
-                {
-                    Application.Run(new Main());
-                }
-            else
-                {
-                    return;
-                }
+            //if (login.DialogResult == DialogResult.OK)
+            //{
+            //    // Application.Run(new Main());
+            //    //login.Close();
+
+            //}
+            //else
+            //{
+            //    return;
+            //}
         }
     }
 }

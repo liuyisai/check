@@ -12,11 +12,11 @@ namespace check.SQL
 {
     class SQL
     {
-        public static DataTable getMeet(string time)//根据时间获取会议信息
+        public static DataTable getMeet(string time,string departID)//根据时间获取会议信息
         {
             try
             {
-                string sqlStr = "select * from MeMeetInfo where mDate='"+time+"'";
+                string sqlStr = "select * from MeMeetInfo where mDate='"+time+"' and mDeptCode='"+departID+"'";
 
                 DataSet dt = SqlHelper.ExecuteDataset(SqlHelper.GetConnSting(), CommandType.Text, sqlStr);
 
@@ -196,7 +196,32 @@ namespace check.SQL
             }
 
         }
+        public static DataRow Login(string userName, string userPwd)
+        {
 
+            try
+            {
+                string sq = "select * from MeUserInfo where uId='" + userName + "' and uPassword='" + userPwd + "'";
+                DataSet obj = SqlHelper.ExecuteDataset(SqlHelper.GetConnSting(), CommandType.Text,sq );
+
+                if (obj.Tables[0].Rows.Count > 0)
+                {
+
+                    if (obj.Tables[0].Rows[0]["uId"].ToString() == userName && obj.Tables[0].Rows[0]["uPassword"].ToString() == userPwd)
+                    {
+                        return obj.Tables[0].Rows[0];
+
+                    }
+                }
+                return null;
+            }
+            catch (SystemException e)
+            {
+                ErrorHandle.showError(e);
+                return null;
+            }
+
+        }
 
 
 

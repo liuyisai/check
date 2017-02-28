@@ -297,7 +297,7 @@
             this.ICoOffset = new System.Drawing.Point(5, 0);
             this.MaximizeBox = false;
             this.Name = "Count";
-            this.Text = "Count";
+            this.Text = "统计";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Count_FormClosing);
             this.Load += new System.EventHandler(this.Count_Load);
             this.skinGroupBox1.ResumeLayout(false);

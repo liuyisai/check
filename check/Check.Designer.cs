@@ -158,17 +158,18 @@
             this.skinLabel5.AutoSize = true;
             this.skinLabel5.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel5.BorderColor = System.Drawing.Color.White;
-            this.skinLabel5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel5.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinLabel5.ForeColor = System.Drawing.Color.Red;
-            this.skinLabel5.Location = new System.Drawing.Point(92, 258);
+            this.skinLabel5.Location = new System.Drawing.Point(76, 250);
             this.skinLabel5.Name = "skinLabel5";
-            this.skinLabel5.Size = new System.Drawing.Size(0, 17);
+            this.skinLabel5.Size = new System.Drawing.Size(0, 26);
             this.skinLabel5.TabIndex = 9;
             // 
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(95, 190);
             this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(140, 23);
             this.textBox4.TabIndex = 7;
             // 
@@ -176,6 +177,7 @@
             // 
             this.textBox3.Location = new System.Drawing.Point(95, 145);
             this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(140, 23);
             this.textBox3.TabIndex = 6;
             // 
@@ -183,6 +185,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(95, 96);
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(140, 23);
             this.textBox2.TabIndex = 5;
             // 
@@ -190,6 +193,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(95, 47);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(140, 23);
             this.textBox1.TabIndex = 4;
             // 
@@ -255,7 +259,7 @@
             this.ICoOffset = new System.Drawing.Point(5, 0);
             this.MaximizeBox = false;
             this.Name = "Check";
-            this.Text = "Check";
+            this.Text = "签到";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Check_FormClosing);
             this.Load += new System.EventHandler(this.Check_Load);
             this.skinGroupBox1.ResumeLayout(false);

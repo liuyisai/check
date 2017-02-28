@@ -67,6 +67,12 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.skinCaptionPanel1.SuspendLayout();
             this.skinCaptionPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.skinDataGridView1)).BeginInit();
@@ -79,7 +85,8 @@
             // skinCaptionPanel1
             // 
             this.skinCaptionPanel1.BackColor = System.Drawing.Color.SkyBlue;
-            this.skinCaptionPanel1.CaptionFont = new System.Drawing.Font("微软雅黑", 9F);
+            this.skinCaptionPanel1.CaptionFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinCaptionPanel1.Controls.Add(this.dateTimePicker1);
             this.skinCaptionPanel1.Controls.Add(this.skinComboBox1);
             this.skinCaptionPanel1.Controls.Add(this.skinLabel2);
             this.skinCaptionPanel1.Controls.Add(this.skinLabel1);
@@ -134,6 +141,7 @@
             this.skinDateTimePicker1.DropDownHeight = 180;
             this.skinDateTimePicker1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
             this.skinDateTimePicker1.DropDownWidth = 120;
+            this.skinDateTimePicker1.Enabled = false;
             this.skinDateTimePicker1.font = new System.Drawing.Font("微软雅黑", 9F);
             this.skinDateTimePicker1.Items = null;
             this.skinDateTimePicker1.Location = new System.Drawing.Point(26, 61);
@@ -141,6 +149,7 @@
             this.skinDateTimePicker1.Size = new System.Drawing.Size(151, 22);
             this.skinDateTimePicker1.TabIndex = 4;
             this.skinDateTimePicker1.text = "";
+            this.skinDateTimePicker1.Visible = false;
             this.skinDateTimePicker1.SelectedValueChange += new CCWin.SkinControl.SkinDateTimePicker.SelectedValueChangeEventHandler(this.skinDateTimePicker1_SelectedValueChange);
             // 
             // skinbutton1
@@ -183,7 +192,7 @@
             // 
             // skinCaptionPanel2
             // 
-            this.skinCaptionPanel2.CaptionFont = new System.Drawing.Font("微软雅黑", 9F);
+            this.skinCaptionPanel2.CaptionFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinCaptionPanel2.Controls.Add(this.skinTextBox1);
             this.skinCaptionPanel2.Controls.Add(this.skinButton3);
             this.skinCaptionPanel2.Controls.Add(this.skinComboBox4);
@@ -239,6 +248,7 @@
             this.skinTextBox1.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.skinTextBox1.WaterText = "输入代表团进行查询";
             this.skinTextBox1.WordWrap = true;
+            this.skinTextBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.skinTextBox1_Paint_1);
             // 
             // skinButton3
             // 
@@ -454,12 +464,16 @@
             this.skinToolStrip1.ItemRadius = 4;
             this.skinToolStrip1.ItemRadiusStyle = CCWin.SkinClass.RoundStyle.All;
             this.skinToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
             this.toolStripTextBox1,
             this.toolStripSeparator3,
+            this.toolStripButton2,
             this.toolStripTextBox2,
             this.toolStripTextBox3,
             this.toolStripSeparator2,
-            this.toolStripTextBox4});
+            this.toolStripButton3,
+            this.toolStripTextBox4,
+            this.toolStripButton4});
             this.skinToolStrip1.Location = new System.Drawing.Point(4, 691);
             this.skinToolStrip1.Name = "skinToolStrip1";
             this.skinToolStrip1.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
@@ -474,8 +488,10 @@
             // 
             // toolStripTextBox1
             // 
+            this.toolStripTextBox1.BackColor = System.Drawing.SystemColors.Window;
             this.toolStripTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.ReadOnly = true;
             this.toolStripTextBox1.Size = new System.Drawing.Size(100, 25);
             this.toolStripTextBox1.Text = "当前用户";
             this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
@@ -490,6 +506,7 @@
             this.toolStripTextBox2.BackColor = System.Drawing.SystemColors.Window;
             this.toolStripTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.toolStripTextBox2.Name = "toolStripTextBox2";
+            this.toolStripTextBox2.ReadOnly = true;
             this.toolStripTextBox2.Size = new System.Drawing.Size(100, 25);
             this.toolStripTextBox2.Text = "网络状态";
             this.toolStripTextBox2.Click += new System.EventHandler(this.toolStripTextBox2_Click);
@@ -499,8 +516,9 @@
             this.toolStripTextBox3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripTextBox3.BackColor = System.Drawing.SystemColors.Window;
             this.toolStripTextBox3.Name = "toolStripTextBox3";
+            this.toolStripTextBox3.ReadOnly = true;
             this.toolStripTextBox3.Size = new System.Drawing.Size(100, 25);
-            this.toolStripTextBox3.Text = "版权所有";
+            this.toolStripTextBox3.Text = "版权所有 ";
             // 
             // toolStripSeparator2
             // 
@@ -509,8 +527,10 @@
             // 
             // toolStripTextBox4
             // 
+            this.toolStripTextBox4.BackColor = System.Drawing.SystemColors.Window;
             this.toolStripTextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.toolStripTextBox4.Name = "toolStripTextBox4";
+            this.toolStripTextBox4.ReadOnly = true;
             this.toolStripTextBox4.Size = new System.Drawing.Size(180, 25);
             this.toolStripTextBox4.Text = "系统时间";
             // 
@@ -563,6 +583,58 @@
             this.timer2.Interval = 10000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(30, 62);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(147, 21);
+            this.dateTimePicker1.TabIndex = 8;
+            this.dateTimePicker1.Value = new System.DateTime(2017, 2, 28, 16, 40, 47, 0);
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // timer3
+            // 
+            this.timer3.Interval = 10000;
+            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Text = "toolStripButton2";
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton3.Text = "toolStripButton3";
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton4.Text = "toolStripButton4";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -581,7 +653,7 @@
             this.ICoOffset = new System.Drawing.Point(5, 0);
             this.MaximizeBox = false;
             this.Name = "Main";
-            this.Text = "Main";
+            this.Text = "会议签到系统";
             this.Load += new System.EventHandler(this.Main_Load);
             this.skinCaptionPanel1.ResumeLayout(false);
             this.skinCaptionPanel1.PerformLayout();
@@ -633,6 +705,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Timer timer3;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
     }
 }
 

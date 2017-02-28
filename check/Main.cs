@@ -8,15 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CCWin;
+using System.Net.NetworkInformation;
 
 namespace check
 {
     public delegate void shutdownRefresh();
     public partial class Main : Skin_Mac
     {
-        public Main()
+        DataRow UserInfo;
+        public Main(DataRow info)
         {
             InitializeComponent();
+            UserInfo = info;      
         }
 
         private void toolStripTextBox1_Click(object sender, EventArgs e)
@@ -119,6 +122,13 @@ namespace check
         }
         private void Main_Load(object sender, EventArgs e)
         {
+            
+            this.dateTimePicker1.CustomFormat = "yyyy-MM-dd ";
+            this.dateTimePicker1.Text = "";
+            toolStripTextBox1.Text = "当前用户："+UserInfo["uName"].ToString();
+            timer3.Enabled = true;
+
+           
         
         }
 
@@ -126,6 +136,7 @@ namespace check
         {
             //系统时间
             toolStripTextBox4.Text ="当前时间:" +DateTime.Now.ToLocalTime().ToString();
+
 
 
         }
@@ -142,8 +153,10 @@ namespace check
             skinTextBox1.Text = "";
             skinComboBox3.SelectedIndex = 0;
             skinComboBox4.SelectedIndex = 0;
-                string meetTime = skinDateTimePicker1.Text;
+            string meetTime = dateTimePicker1.Text;
                 meetID = this.skinComboBox1.SelectedValue.ToString();
+                
+                skinCaptionPanel2.Text = "当前会议：" + skinComboBox1.Text.ToString();
                 System .Data .DataTable dt2 = check.SQL.SQL.getMeeter(meetID);
                 if (dt2 != null)
                 {
@@ -187,7 +200,7 @@ namespace check
         private void skinComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             
-            if (skinComboBox1.Tag == "1")
+            if (skinComboBox1.Tag.ToString() == "1")
             {
                 refresh();
                 if (check.SQL.SQL.getIsMeeting(this.skinComboBox1.SelectedValue.ToString()) == null)
@@ -202,50 +215,51 @@ namespace check
 
             
             
-            string selectTime = skinDateTimePicker1.Text;
-            DataTable dt1 = check.SQL.SQL.getMeet(selectTime);
-            if (dt1 != null)
-            {
-                this.skinComboBox1.Tag = "0";
-                this.skinComboBox1 .DataSource = dt1;
-                this.skinComboBox1.ValueMember = "id";
-                this.skinComboBox1.DisplayMember = "mName";
-                this.skinComboBox1.Tag = "1";
-                refresh();
-                if (check.SQL.SQL.getIsMeeting(this.skinComboBox1.SelectedValue.ToString()) == null)
-                {
-                    check.SQL.SQL.insertNumber(this.skinComboBox1.SelectedValue.ToString());
-                }
-            }
-            else
-            {
-                this.skinComboBox1.Tag = "0";
-                this.skinComboBox1.DataSource = null;
-                this.skinComboBox1.Tag = "1";
-                this.skinDataGridView1.Rows.Clear();
-                skinTextBox1.Text = "";
-                skinComboBox3.SelectedIndex = 0;
-                skinComboBox4.SelectedIndex = 0;
-            }
-        }
+        //    string selectTime = skinDateTimePicker1.Text;
+        //    string departID=UserInfo["uDeptment"].ToString();
+        //    DataTable dt1 = check.SQL.SQL.getMeet(selectTime,departID);
+        //    if (dt1 != null)
+        //    {
+        //        this.skinComboBox1.Tag = "0";
+        //        this.skinComboBox1 .DataSource = dt1;
+        //        this.skinComboBox1.ValueMember = "id";
+        //        this.skinComboBox1.DisplayMember = "mName";
+        //        this.skinComboBox1.Tag = "1";
+        //        refresh();
+        //        if (check.SQL.SQL.getIsMeeting(this.skinComboBox1.SelectedValue.ToString()) == null)
+        //        {
+        //            check.SQL.SQL.insertNumber(this.skinComboBox1.SelectedValue.ToString());
+        //        }
+        //    }
+        //    else
+        //    {
+        //        this.skinComboBox1.Tag = "0";
+        //        this.skinComboBox1.DataSource = null;
+        //        this.skinComboBox1.Tag = "1";
+        //        this.skinDataGridView1.Rows.Clear();
+        //        skinTextBox1.Text = "";
+        //        skinComboBox3.SelectedIndex = 0;
+        //        skinComboBox4.SelectedIndex = 0;
+        //    }
+        //}
 
-        private void skinTextBox1_Paint(object sender, PaintEventArgs e)
-        {
-            for (int i = 0; i < skinDataGridView1.Rows.Count;i++ )
-            {
-                int j = skinDataGridView1.Rows[i].Cells[1].Value.ToString().IndexOf(skinTextBox1.Text);
-                if (j > -1)
-                {
-                    skinDataGridView1.Rows[i].Visible = true;
-                }
-                else 
-                {
-                    skinDataGridView1.Rows[i].Visible = false;
-                }
+        //private void skinTextBox1_Paint(object sender, PaintEventArgs e)
+        //{
+        //    for (int i = 0; i < skinDataGridView1.Rows.Count;i++ )
+        //    {
+        //        int j = skinDataGridView1.Rows[i].Cells[1].Value.ToString().IndexOf(skinTextBox1.Text);
+        //        if (j > -1)
+        //        {
+        //            skinDataGridView1.Rows[i].Visible = true;
+        //        }
+        //        else 
+        //        {
+        //            skinDataGridView1.Rows[i].Visible = false;
+        //        }
                 
 
 
-            }
+        //    }
         }
 
         protected override bool ProcessDialogKey(Keys keyData)
@@ -408,8 +422,106 @@ namespace check
                 
             }
         }
-      
-          
+
+        private void skinTextBox1_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+
+
+            string selectTime = dateTimePicker1.Text;
+            string departID = UserInfo["uDeptment"].ToString();
+            DataTable dt1 = check.SQL.SQL.getMeet(selectTime, departID);
+            if (dt1 != null)
+            {
+                this.skinComboBox1.Tag = "0";
+                this.skinComboBox1.DataSource = dt1;
+                this.skinComboBox1.ValueMember = "id";
+                this.skinComboBox1.DisplayMember = "mName";
+                this.skinComboBox1.Tag = "1";
+                refresh();
+                if (check.SQL.SQL.getIsMeeting(this.skinComboBox1.SelectedValue.ToString()) == null)
+                {
+                    check.SQL.SQL.insertNumber(this.skinComboBox1.SelectedValue.ToString());
+                }
+            }
+            else
+            {
+                this.skinComboBox1.Tag = "0";
+                this.skinComboBox1.DataSource = null;
+                this.skinComboBox1.Tag = "1";
+                this.skinDataGridView1.Rows.Clear();
+                skinTextBox1.Text = "";
+                skinComboBox3.SelectedIndex = 0;
+                skinComboBox4.SelectedIndex = 0;
+                skinCaptionPanel2.Text = "当前会议";
+            }
+
+            
+
+        }
+        int netValue;
+         //internet
+        private bool PingIpOrDomainName(string strIpOrDName) 
+        {
+            try
+            {
+                Ping objPingSender = new Ping();
+                PingOptions objpinOptions = new PingOptions();
+                objpinOptions.DontFragment = true;
+                string data = "";
+                byte[] buffer = Encoding.UTF8.GetBytes(data);
+                int intTimeout = 120;
+                PingReply objPinReply = objPingSender.Send(strIpOrDName,intTimeout,buffer,objpinOptions);
+                string strInfo = objPinReply.Status.ToString();
+                netValue = (int)objPinReply.RoundtripTime;
+                if (strInfo == "Success")
+                {
+                    return true;
+
+                }
+                else 
+                {
+                    return false;
+                }
+                
+
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            if (PingIpOrDomainName("115.24.161.31"))
+            {
+                if (netValue < 50)
+                {
+                    toolStripTextBox2.Text = "网络状态：极佳";
+                }
+                else if (netValue < 100)
+                {
+                    toolStripTextBox2.Text = "网络状态：良好";
+                }
+                else 
+                {
+                    toolStripTextBox2.Text = "网络状态：不稳定";
+                }
+                
+            }
+            else 
+            {
+                toolStripTextBox2.Text = "网络状态：无连接";
+            }
+        }
 
 
 

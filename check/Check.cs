@@ -65,44 +65,56 @@ namespace check
             int i=0;
             userChecktime = DateTime.Now.ToLocalTime().ToString();
              dt = check.SQL.SQL.getMeeterInfo(QRcode, MeetId);
-            if ((int)dt.Rows[0]["attendState"] == 0)
-            {
-                i = check.SQL.SQL.setMeeterInfo(QRcode, userChecktime);
-                if (i == 1)
-                {
-                    
-                    textBox1.Text = dt.Rows[0]["uName"].ToString();
-                    textBox2.Text = dt.Rows[0]["delegationName"].ToString();
-                    userPosition = QRcode.Substring(5, 2) + "排" + QRcode.Substring(7, 2) + "列";
-                    textBox3.Text = userPosition;
-                    textBox4.Text = userChecktime;
-                    skinTextBox1.Text = "";
-                    skinLabel5.Text = "签到成功！";
+             if (dt!=null)
+             {
+                 if ((int)dt.Rows[0]["attendState"] == 0)
+                 {
+                     i = check.SQL.SQL.setMeeterInfo(QRcode, userChecktime);
+                     if (i == 1)
+                     {
 
-                }
-                else
-                {
-                    skinLabel5.Text = "查无此人！";
-                    skinTextBox1.Text = "";
-                    textBox1.Text = "";
-                    textBox2.Text = "";
-                    textBox3.Text = "";
-                    textBox4.Text = "";
+                         textBox1.Text = dt.Rows[0]["uName"].ToString();
+                         textBox2.Text = dt.Rows[0]["delegationName"].ToString();
+                         userPosition = QRcode.Substring(5, 2) + "排" + QRcode.Substring(7, 2) + "列";
+                         textBox3.Text = userPosition;
+                         textBox4.Text = userChecktime;
+                         skinTextBox1.Text = "";
+                         skinLabel5.Text = "签到成功！";
 
-                }
-            }
-            else 
-            {
-                textBox1.Text = dt.Rows[0]["uName"].ToString();
-                textBox2.Text = dt.Rows[0]["delegationName"].ToString();
-                userPosition = QRcode.Substring(5, 2) + "排" + QRcode.Substring(7, 2) + "列";
-                textBox3.Text = userPosition;
-                textBox4.Text = dt.Rows[0]["attendTime"].ToString();
-                skinLabel5.Text = "此人已签到！";
+                     }
+                     else
+                     {
+                         skinLabel5.Text = "查无此人！";
+                         skinTextBox1.Text = "";
+                         textBox1.Text = "";
+                         textBox2.Text = "";
+                         textBox3.Text = "";
+                         textBox4.Text = "";
 
+                     }
+                 }
+                 else
+                 {
+                     textBox1.Text = dt.Rows[0]["uName"].ToString();
+                     textBox2.Text = dt.Rows[0]["delegationName"].ToString();
+                     userPosition = QRcode.Substring(5, 2) + "排" + QRcode.Substring(7, 2) + "列";
+                     textBox3.Text = userPosition;
+                     textBox4.Text = dt.Rows[0]["attendTime"].ToString();
+                     skinLabel5.Text = "此人已签到！";
 
-            }
+                 }
+             }
+             else
+             {
+                 skinLabel5.Text = "查无此人！";
+                 skinTextBox1.Text = "";
+                 textBox1.Text = "";
+                 textBox2.Text = "";
+                 textBox3.Text = "";
+                 textBox4.Text = "";
 
+             }
+           
             
 
 
