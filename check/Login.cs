@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CCWin;
+using System.Net.NetworkInformation;
 
 namespace check
 {
@@ -16,6 +17,39 @@ namespace check
         public Login()
         {
             InitializeComponent();
+    
+
+        }
+
+        private bool PingIpOrDomainName(string strIpOrDName)
+        {
+            try
+            {
+                Ping objPingSender = new Ping();
+                PingOptions objpinOptions = new PingOptions();
+                objpinOptions.DontFragment = true;
+                string data = "";
+                byte[] buffer = Encoding.UTF8.GetBytes(data);
+                int intTimeout = 120;
+                PingReply objPinReply = objPingSender.Send(strIpOrDName, intTimeout, buffer, objpinOptions);
+                string strInfo = objPinReply.Status.ToString();
+                if (strInfo == "Success")
+                {
+                    return true;
+
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
 
         }
         
@@ -28,19 +62,37 @@ namespace check
         
         private void checkLogin() 
         {
-            dr = check.SQL.SQL.Login(skinTextBox2.Text.ToString().Trim(),skinTextBox1.Text.ToString());
-            if (dr != null)
+            try
             {
-                this.DialogResult = DialogResult.OK;
+                if (PingIpOrDomainName("115.24.161.31"))
+                {
+                    dr = check.SQL.SQL.Login(skinTextBox2.Text.ToString().Trim(), skinTextBox1.Text.ToString());
+                    if (dr != null)
+                    {
+                        this.DialogResult = DialogResult.OK;
+
+                        Main m = new Main(dr);
+                        this.Visible = false;
+                        m.ShowDialog();
+                    }
+                    else
+                    {
+                        skinLabel1.Text = "用户名或密码错误！";
+                    }
+                }
+                else 
+                {
+                    MessageBox.Show("请检查网络连接！");
+                }
                 
-                Main m = new Main(dr);
-                this.Visible = false;
-                m.ShowDialog();           
+
             }
-            else 
+            catch (Exception)
             {
-                skinLabel1.Text = "用户名或密码错误！";
+
+                MessageBox.Show("请检查网络连接！");
             }
+           
 
         }
 

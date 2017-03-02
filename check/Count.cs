@@ -36,6 +36,10 @@ namespace check
         public delegate void DelegateUpdateCount();
 
         public event DelegateUpdateCount ChangeFlag;
+
+
+        public delegate void DelegateUpdateCount2();
+        public event DelegateUpdateCount2 ClickFlag;
        
 
 
@@ -135,6 +139,10 @@ namespace check
             int totalNum = 0;
             int attendNum = 0;
             int unattendNum = 0;
+
+
+
+
             for (int i = 0; i < mainDt.Rows.Count; i++)
             {
                 totalNum++;
@@ -159,6 +167,7 @@ namespace check
             int formalSum = 0, attendSum = 0, specialSum = 0, dueSum = 0, unarrivalSum = 0;
             string delegation = "", delegationNext = "";
             int formalerNum = 0, attenderNum = 0, specialerNum = 0, dueNum = 0, unarriveNum = 0;
+            int dueformalerNum = 0, dueattenderNum=0, duespecialerNum = 0;
             string delegator, attend;
 
             while (flag == 0)
@@ -182,6 +191,10 @@ namespace check
                                     unarriveNum++;
 
                                 }
+                                else
+                                {
+                                    dueformalerNum++;
+                                }
                             } break;
                         case "列席代表":
                             {
@@ -191,6 +204,10 @@ namespace check
                                     unarriveNum++;
 
                                 }
+                                else 
+                                {
+                                    dueattenderNum++;
+                                }
                             } break;
                         case "特邀代表":
                             {
@@ -199,6 +216,10 @@ namespace check
                                     specialerNum++;
                                     unarriveNum++;
 
+                                }
+                                else 
+                                {
+                                    duespecialerNum++;
                                 }
                             } break;
 
@@ -215,7 +236,7 @@ namespace check
                     }
 
                 }
-                skinDataGridView1.Rows.Add(delegation, formalerNum, attenderNum, specialerNum, dueNum, unarriveNum);
+                skinDataGridView1.Rows.Add(delegation, dueNum, unarriveNum ,formalerNum, attenderNum, specialerNum);
                 formalSum = formalSum + formalerNum;
                 attendSum = attendSum + attenderNum;
                 specialSum = specialSum + specialerNum;
@@ -228,7 +249,9 @@ namespace check
                     flag = 0;
             }
 
-            skinDataGridView1.Rows.Add("总计", formalSum, attendSum, specialSum, dueSum, unarrivalSum);
+            skinDataGridView1.Rows.Add("总计", dueSum, unarrivalSum,formalSum, attendSum, specialSum);
+            skinLabel9.Text = "正式代表: "+dueformalerNum.ToString(); skinLabel10.Text = "列席代表: "+dueattenderNum.ToString(); skinLabel11.Text = "特邀代表: "+duespecialerNum.ToString();
+            skinLabel18.Text = "正式代表: " + formalSum.ToString(); skinLabel19.Text = "列席代表: " + attendSum.ToString(); skinLabel20.Text = "特邀代表: " + specialSum.ToString();
 
 
 
@@ -275,6 +298,7 @@ namespace check
             int k = 0 ;
             int formalSum = 0, attendSum = 0, specialSum = 0, dueSum = 0, unarrivalSum = 0;
             string delegation="",delegationNext="";
+            int dueformalerNum = 0, dueattenderNum = 0, duespecialerNum = 0;
             int formalerNum = 0,attenderNum=0,specialerNum=0,dueNum=0,unarriveNum=0;
             string delegator,attend;
 
@@ -299,6 +323,10 @@ namespace check
                                     unarriveNum++;
                                     
                                 }
+                                else
+                                {
+                                    dueformalerNum++;
+                                }
                             }break;
                         case "列席代表":
                             {
@@ -308,6 +336,10 @@ namespace check
                                     unarriveNum++;
 
                                 }
+                                else
+                                {
+                                    dueattenderNum++;
+                                }
                             }break;
                         case "特邀代表":
                             {
@@ -316,6 +348,10 @@ namespace check
                                     specialerNum++;
                                     unarriveNum++;
 
+                                }
+                                else
+                                {
+                                    duespecialerNum++;
                                 }
                             }break;
                        
@@ -346,7 +382,8 @@ namespace check
             }
 
             skinDataGridView1.Rows.Add("总计",formalSum,attendSum,specialSum,dueSum,unarrivalSum);
-
+            skinLabel9.Text = "正式代表: " + dueformalerNum.ToString(); skinLabel10.Text = "列席代表: " + dueattenderNum.ToString(); skinLabel11.Text = "特邀代表: " + duespecialerNum.ToString();
+            skinLabel18.Text = "正式代表: " + formalSum.ToString(); skinLabel19.Text = "列席代表: " + attendSum.ToString(); skinLabel20.Text = "特邀代表: " + specialSum.ToString();
 	
 
             #endregion
@@ -365,6 +402,22 @@ namespace check
         private void Count_FormClosing(object sender, FormClosingEventArgs e)
         {
             ChangeFlag();
+        }
+
+        private void skinGroupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void skinLabel10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void skinButton2_Click(object sender, EventArgs e)
+        {
+            ClickFlag();
+
         }
     }
 }

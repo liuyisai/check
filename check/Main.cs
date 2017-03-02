@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CCWin;
 using System.Net.NetworkInformation;
+using System.Threading;
 
 namespace check
 {
@@ -59,8 +60,24 @@ namespace check
 
         void ch_ChangeTimer()
         {
-            refresh();
-            timer2.Enabled = false;
+            try
+            {
+                if (PingIpOrDomainName("115.24.161.31"))
+                {
+                    refresh();
+                    timer2.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("请检查网络连接！");
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("网络异常！");
+
+            }
+            
 
         }
 
@@ -85,7 +102,7 @@ namespace check
                 co.Show();
                 countFlag = 1;
                 co.ChangeFlag+=co_ChangeFlag;
-
+                co.ClickFlag += co_ClickFlag;
             }
             else 
             {
@@ -199,15 +216,31 @@ namespace check
 
         private void skinComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            if (skinComboBox1.Tag.ToString() == "1")
+            try
             {
-                refresh();
-                if (check.SQL.SQL.getIsMeeting(this.skinComboBox1.SelectedValue.ToString()) == null)
+                if (PingIpOrDomainName("115.24.161.31"))
                 {
-                    check.SQL.SQL.insertNumber(this.skinComboBox1.SelectedValue.ToString());
+                    if (skinComboBox1.Tag.ToString() == "1")
+                    {
+                        refresh();
+                        if (check.SQL.SQL.getIsMeeting(this.skinComboBox1.SelectedValue.ToString()) == null)
+                        {
+                            check.SQL.SQL.insertNumber(this.skinComboBox1.SelectedValue.ToString());
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("请检查网络连接！");
                 }
             }
+            catch (Exception)
+            {
+
+                MessageBox.Show("网络异常！");
+            }
+            
+            
         }
 
         private void skinDateTimePicker1_SelectedValueChange(object sender, string Item)
@@ -397,30 +430,43 @@ namespace check
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            refresh();
-            DataTable dtt = GetDgvToTable(skinDataGridView1);
-            #region  总体统计
-            int totalNum = 0;
-            int attendNum = 0;
-            int unattendNum = 0;
-            for (int i = 0; i < dtt.Rows.Count; i++)
+            try
             {
-                totalNum++;
-                if (dtt.Rows[i]["Column6"].ToString() == "是")
+                if (PingIpOrDomainName("115.24.161.31"))
                 {
-                    attendNum++;
+                    refresh();
+                    DataTable dtt = GetDgvToTable(skinDataGridView1);
+                    #region  总体统计
+                    int totalNum = 0;
+                    int attendNum = 0;
+                    int unattendNum = 0;
+                    for (int i = 0; i < dtt.Rows.Count; i++)
+                    {
+                        totalNum++;
+                        if (dtt.Rows[i]["Column6"].ToString() == "是")
+                        {
+                            attendNum++;
 
+                        }
+                        else
+                            unattendNum++;
+                    }
+                    #endregion
+                    check.SQL.SQL.updateNumber(totalNum.ToString(), attendNum.ToString(), unattendNum.ToString(), meetID);
+                    if (countFlag == 1)
+                    {
+                        co.refresh(GetDgvToTable(skinDataGridView1));
+
+                    }
                 }
-                else
-                    unattendNum++;
-            }
-            #endregion
-            check.SQL.SQL.updateNumber(totalNum.ToString(),attendNum.ToString(),unattendNum.ToString(),meetID);
-            if (countFlag==1)
-            {
-                co.refresh(GetDgvToTable(skinDataGridView1));
                 
             }
+            catch (Exception)
+            {
+
+                MessageBox.Show("网络异常！");
+            }
+           
         }
 
         private void skinTextBox1_Paint_1(object sender, PaintEventArgs e)
@@ -431,35 +477,50 @@ namespace check
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
-
-
-            string selectTime = dateTimePicker1.Text;
-            string departID = UserInfo["uDeptment"].ToString();
-            DataTable dt1 = check.SQL.SQL.getMeet(selectTime, departID);
-            if (dt1 != null)
+            try
             {
-                this.skinComboBox1.Tag = "0";
-                this.skinComboBox1.DataSource = dt1;
-                this.skinComboBox1.ValueMember = "id";
-                this.skinComboBox1.DisplayMember = "mName";
-                this.skinComboBox1.Tag = "1";
-                refresh();
-                if (check.SQL.SQL.getIsMeeting(this.skinComboBox1.SelectedValue.ToString()) == null)
+                if (PingIpOrDomainName("115.24.161.31"))
                 {
-                    check.SQL.SQL.insertNumber(this.skinComboBox1.SelectedValue.ToString());
+                    string selectTime = dateTimePicker1.Text;
+                    string departID = UserInfo["uDeptment"].ToString();
+                    DataTable dt1 = check.SQL.SQL.getMeet(selectTime, departID);
+                    if (dt1 != null)
+                    {
+                        this.skinComboBox1.Tag = "0";
+                        this.skinComboBox1.DataSource = dt1;
+                        this.skinComboBox1.ValueMember = "id";
+                        this.skinComboBox1.DisplayMember = "mName";
+                        this.skinComboBox1.Tag = "1";
+                        refresh();
+                        if (check.SQL.SQL.getIsMeeting(this.skinComboBox1.SelectedValue.ToString()) == null)
+                        {
+                            check.SQL.SQL.insertNumber(this.skinComboBox1.SelectedValue.ToString());
+                        }
+                    }
+                    else
+                    {
+                        this.skinComboBox1.Tag = "0";
+                        this.skinComboBox1.DataSource = null;
+                        this.skinComboBox1.Tag = "1";
+                        this.skinDataGridView1.Rows.Clear();
+                        skinTextBox1.Text = "";
+                        skinComboBox3.SelectedIndex = 0;
+                        skinComboBox4.SelectedIndex = 0;
+                        skinCaptionPanel2.Text = "当前会议";
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("请检查网络连接！");
                 }
             }
-            else
+            catch (Exception)
             {
-                this.skinComboBox1.Tag = "0";
-                this.skinComboBox1.DataSource = null;
-                this.skinComboBox1.Tag = "1";
-                this.skinDataGridView1.Rows.Clear();
-                skinTextBox1.Text = "";
-                skinComboBox3.SelectedIndex = 0;
-                skinComboBox4.SelectedIndex = 0;
-                skinCaptionPanel2.Text = "当前会议";
+
+                MessageBox.Show("请检查网络连接！");
             }
+
+            
 
             
 
@@ -501,26 +562,94 @@ namespace check
 
         private void timer3_Tick(object sender, EventArgs e)
         {
-            if (PingIpOrDomainName("115.24.161.31"))
+           // int SystemState = 0;
+            try
             {
-                if (netValue < 50)
-                {
+           
+                   if (PingIpOrDomainName("115.24.161.31"))
+                    {
+                       //SystemState = 1;
+                      if (netValue < 50)
+                     {
                     toolStripTextBox2.Text = "网络状态：极佳";
-                }
-                else if (netValue < 100)
-                {
+                     }
+                     else if (netValue < 100)
+                     {
                     toolStripTextBox2.Text = "网络状态：良好";
-                }
-                else 
-                {
+                      }
+                     else 
+                     {
                     toolStripTextBox2.Text = "网络状态：不稳定";
-                }
+                     }
                 
             }
-            else 
-            {
+                   else 
+                  {
                 toolStripTextBox2.Text = "网络状态：无连接";
+                //SystemState = 0;
+                   }
+           
+
+
             }
+            catch (Exception)
+            {
+
+                MessageBox.Show("无网络！");
+            }
+            //if (SystemState!=1)
+            //{
+            //    MessageBox.Show("请检查网络连接！");
+            //    System.Threading.Thread.Sleep(10000);
+            //}
+
+
+
+
+        }
+
+        void co_ClickFlag()
+        {
+            skinButton4_Click(null,null);
+        }
+        private void skinButton4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (PingIpOrDomainName("115.24.161.31"))
+                {
+                    refresh();
+                    if (countFlag == 1)
+                    {
+                        DataTable dtt = GetDgvToTable(skinDataGridView1);
+                        int totalNum = 0;
+                        int attendNum = 0;
+                        int unattendNum = 0;
+                        for (int i = 0; i < dtt.Rows.Count; i++)
+                        {
+                            totalNum++;
+                            if (dtt.Rows[i]["Column6"].ToString() == "是")
+                            {
+                                attendNum++;
+                            }
+                            else
+                                unattendNum++;
+                        }
+                        check.SQL.SQL.updateNumber(totalNum.ToString(), attendNum.ToString(), unattendNum.ToString(), meetID);
+                        co.refresh(GetDgvToTable(skinDataGridView1));
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("请检查网络连接！");
+                }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("网络异常！");
+            }
+
         }
 
 

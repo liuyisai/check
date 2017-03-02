@@ -39,7 +39,7 @@ namespace check.SQL
         {
             try
             {
-                string sqlStr = "select MePerAttend.*,MeDelegation.*,MeUserInfo.* from MePerAttend,MeDelegation,MeUserInfo where MePerAttend.meetingId=" + id + " and MeDelegation.id=MePerAttend.delegationId and MeUserInfo.id=MePerAttend.uId order by MeDelegation.id";
+                string sqlStr = "select MePerAttend.*,MeDelegation.* from MePerAttend,MeDelegation where MePerAttend.meetingId=" + id + " and MeDelegation.id=MePerAttend.delegationId order by MeDelegation.id";
 
                 DataSet dt = SqlHelper.ExecuteDataset(SqlHelper.GetConnSting(), CommandType.Text, sqlStr);
 
@@ -62,8 +62,8 @@ namespace check.SQL
         {
             try
             {
-                string sqlStr = "select MePerAttend.*,MeDelegation.*,MeUserInfo.* from MePerAttend,MeDelegation,MeUserInfo where MePerAttend.QRcode='" + code 
-                    + "' and MeDelegation.id=MePerAttend.delegationId and MeUserInfo.id=MePerAttend.uId and MePerAttend.meetingId="+meetid;
+                string sqlStr = "select MePerAttend.*,MeDelegation.* from MePerAttend,MeDelegation,MeUserInfo where MePerAttend.QRcode='" + code
+                    + "' and MeDelegation.id=MePerAttend.delegationId and MePerAttend.meetingId=" + meetid + " order by MePerAttend.timeStamp desc";
 
                 DataSet dt = SqlHelper.ExecuteDataset(SqlHelper.GetConnSting(), CommandType.Text, sqlStr);
 
