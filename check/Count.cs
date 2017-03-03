@@ -381,7 +381,7 @@ namespace check
                     flag = 0;
             }
 
-            skinDataGridView1.Rows.Add("总计", formalSum,dueSum,unarrivalSum,attendSum, specialSum, dueSum,unarrivalSum);
+            skinDataGridView1.Rows.Add("总计",dueSum,unarrivalSum,formalSum,attendSum, specialSum);
             skinLabel9.Text = "正式代表: " + dueformalerNum.ToString(); skinLabel10.Text = "列席代表: " + dueattenderNum.ToString(); skinLabel11.Text = "特邀代表: " + duespecialerNum.ToString();
             skinLabel18.Text = "正式代表: " + formalSum.ToString(); skinLabel19.Text = "列席代表: " + attendSum.ToString(); skinLabel20.Text = "特邀代表: " + specialSum.ToString();
 	
