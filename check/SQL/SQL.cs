@@ -39,7 +39,7 @@ namespace check.SQL
         {
             try
             {
-                string sqlStr = "select MePerAttend.*,MeDelegation.* from MePerAttend,MeDelegation where MePerAttend.meetingId=" + id + " and MeDelegation.id=MePerAttend.delegationId order by MeDelegation.id";
+                string sqlStr = "select MePerAttend.*,MeDelegation.* from MePerAttend,MeDelegation where MePerAttend.meetingId=" + id + " and MeDelegation.id=MePerAttend.delegationId order by MePerAttend.attendTime DESC";
 
                 DataSet dt = SqlHelper.ExecuteDataset(SqlHelper.GetConnSting(), CommandType.Text, sqlStr);
 
@@ -81,11 +81,11 @@ namespace check.SQL
             }
 
         }
-        public static int   setMeeterInfo(string QRcode,string checkTime)//根据二维码设置人员信息
+        public static int   setMeeterInfo(string QRcode,string checkTime,string mID)//根据二维码设置人员信息
         {
             try
             {
-                string sqlStr = "update MePerAttend set attendState=1,attendTime='"+checkTime+"' where QRcode='"+QRcode+"'";
+                string sqlStr = "update MePerAttend set attendState=1,attendTime='"+checkTime+"',manageId='"+mID+"' where QRcode='"+QRcode+"'";
 
                 int  i = SqlHelper.ExecuteNonQuery(SqlHelper.GetConnSting(), CommandType.Text, sqlStr);
 

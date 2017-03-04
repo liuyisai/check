@@ -54,6 +54,7 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.skinLabel7 = new CCWin.SkinControl.SkinLabel();
             this.skinGroupBox1.SuspendLayout();
             this.skinGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.skinSplitContainer1)).BeginInit();
@@ -189,9 +190,9 @@
             this.skinLabel6.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinLabel6.Location = new System.Drawing.Point(20, 136);
             this.skinLabel6.Name = "skinLabel6";
-            this.skinLabel6.Size = new System.Drawing.Size(56, 17);
+            this.skinLabel6.Size = new System.Drawing.Size(32, 17);
             this.skinLabel6.TabIndex = 10;
-            this.skinLabel6.Text = "代表类型";
+            this.skinLabel6.Text = "身份";
             // 
             // skinLabel5
             // 
@@ -296,6 +297,7 @@
             // 
             // skinSplitContainer1.Panel1
             // 
+            this.skinSplitContainer1.Panel1.Controls.Add(this.skinLabel7);
             this.skinSplitContainer1.Panel1.Controls.Add(this.skinDataGridView1);
             // 
             // skinSplitContainer1.Panel2
@@ -340,12 +342,12 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.skinDataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.skinDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.skinDataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.skinDataGridView1.EnableHeadersVisualStyles = false;
             this.skinDataGridView1.GridColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.skinDataGridView1.HeadFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinDataGridView1.HeadSelectForeColor = System.Drawing.SystemColors.HighlightText;
-            this.skinDataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.skinDataGridView1.Location = new System.Drawing.Point(0, 24);
             this.skinDataGridView1.Name = "skinDataGridView1";
             this.skinDataGridView1.ReadOnly = true;
             this.skinDataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -358,7 +360,7 @@
             this.skinDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.skinDataGridView1.RowTemplate.Height = 23;
             this.skinDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.skinDataGridView1.Size = new System.Drawing.Size(272, 157);
+            this.skinDataGridView1.Size = new System.Drawing.Size(272, 133);
             this.skinDataGridView1.TabIndex = 1;
             this.skinDataGridView1.TitleBack = null;
             this.skinDataGridView1.TitleBackColorBegin = System.Drawing.Color.White;
@@ -382,6 +384,18 @@
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
+            // skinLabel7
+            // 
+            this.skinLabel7.AutoSize = true;
+            this.skinLabel7.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabel7.BorderColor = System.Drawing.Color.White;
+            this.skinLabel7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel7.Location = new System.Drawing.Point(82, 4);
+            this.skinLabel7.Name = "skinLabel7";
+            this.skinLabel7.Size = new System.Drawing.Size(97, 17);
+            this.skinLabel7.TabIndex = 2;
+            this.skinLabel7.Text = "签到口-流量统计";
+            // 
             // Check
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -401,6 +415,7 @@
             this.skinGroupBox2.ResumeLayout(false);
             this.skinGroupBox2.PerformLayout();
             this.skinSplitContainer1.Panel1.ResumeLayout(false);
+            this.skinSplitContainer1.Panel1.PerformLayout();
             this.skinSplitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.skinSplitContainer1)).EndInit();
             this.skinSplitContainer1.ResumeLayout(false);
@@ -431,6 +446,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private CCWin.SkinControl.SkinLabel skinLabel7;
 
     }
 }

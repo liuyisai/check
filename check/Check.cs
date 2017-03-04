@@ -15,22 +15,26 @@ namespace check
     public partial class Check :Skin_Mac
     {
         string MeetId;
-        public delegate void DelegateInsertMain();
+        string userId;
+        DataTable allResource;
+       // public delegate void DelegateInsertMain();
 
-        public event DelegateInsertMain ChangeTimer;  
-        public Check(string meetId)
+       // public event DelegateInsertMain ChangeTimer;  
+        public Check(string meetId,string userID,DataTable dta)
         {
             InitializeComponent();
             MeetId = meetId;
-
+            userId = userID;
+            allResource = dta;
+            
         }
         private static Check instance;
 
-        public static Check CreateForm(string meetId)
+        public static Check CreateForm(string meetId,string userID,DataTable dta)
         {
             if (instance == null || instance.IsDisposed)
             {
-                instance = new Check(meetId);
+                instance = new Check(meetId,userID,dta);
 
             }
             return instance;
@@ -110,7 +114,7 @@ namespace check
                         }
                         if ((int)dt.Rows[0]["attendState"] == 0)
                         {
-                            i = check.SQL.SQL.setMeeterInfo(QRcode, userChecktime);
+                            i = check.SQL.SQL.setMeeterInfo(QRcode, userChecktime,userId);
                             if (i == 1)
                             {
 
@@ -123,6 +127,14 @@ namespace check
                                 skinTextBox1.Text = "";
                                 skinLabel5.Text = "签到成功！";
 
+
+                                #region 上部数据表
+                                skinDataGridView1.Rows.Insert(0, textBox1.Text.ToString(), textBox2.Text.ToString(), textBox3.Text.ToString());
+                                skinDataGridView1.Rows[1].Selected = false ;
+                                skinDataGridView1.Rows[0].Selected=true;
+                                personNum++;
+                                skinLabel7.Text = "签到口-流量统计：" + personNum.ToString();                               
+                                #endregion
                             }
                           
                         }
@@ -168,6 +180,7 @@ namespace check
 
             
         }
+        int personNum = 0;
         protected override bool ProcessDialogKey(Keys keyData)
         {
             if (keyData == Keys.Enter)
@@ -179,12 +192,23 @@ namespace check
 
         private void Check_Load(object sender, EventArgs e)
         {
-
+           
+            for (int i = 0; i < allResource.Rows.Count; i++)
+            {
+                if (allResource.Rows[i]["Column3"].ToString()==userId.ToString())
+                {
+                    skinDataGridView1.Rows.Add(allResource.Rows[i]["Column1"], allResource.Rows[i]["Column5"], allResource.Rows[i]["Column2"]);
+                    personNum++;
+                    
+                }
+                
+            }
+            skinLabel7.Text = "签到口-流量统计："+personNum.ToString();
         }
 
         private void Check_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ChangeTimer();
+            //ChangeTimer();
             //Main m = new Main();
             //shutdownRefresh shut = new shutdownRefresh(m.doRefresh);
             //shut();

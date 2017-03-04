@@ -71,7 +71,7 @@ namespace check
                     {
                         if(dr["loginState"].ToString()=="0")//未登录
                         {
-                        check.SQL.SQL.setloginState(skinTextBox2.Text.ToString().Trim(), "1");    //修改登录标志位为已登录                             
+                        check.SQL.SQL.setloginState(skinTextBox2.Text.ToString().Trim(), "0");    //修改登录标志位为已登录    ??????                         
                         this.DialogResult = DialogResult.OK;
                         Main m = new Main(dr, skinTextBox2.Text.ToString().Trim());
                         this.Visible = false;

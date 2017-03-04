@@ -47,10 +47,10 @@ namespace check
             if (skinComboBox1.SelectedValue!=null )
             {
                 string Meet = skinComboBox1.SelectedValue.ToString();
-                Check ch = Check.CreateForm(Meet);
+                Check ch = Check.CreateForm(Meet,userId,originalResoure);
                 ch.Show();
-                ch.ChangeTimer+=ch_ChangeTimer;
-                timer2.Enabled = true;              
+               // ch.ChangeTimer+=ch_ChangeTimer;
+                //timer2.Enabled = true;              
 
             }
             else 
@@ -62,32 +62,32 @@ namespace check
 
         void ch_ChangeTimer()
         {
-            try
-            {
-                if (PingIpOrDomainName("115.24.161.31"))
-                {
-                    refresh();
-                    timer2.Enabled = false;
-                }
-                else
-                {
-                    MessageBox.Show("请检查网络连接！");
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("网络异常！");
+            //try
+            //{
+            //    if (PingIpOrDomainName("115.24.161.31"))
+            //    {
+            //        refresh();
+            //        timer2.Enabled = false;
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("请检查网络连接！");
+            //    }
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("网络异常！");
 
-            }
+            //}
             
 
         }
 
         public  void doRefresh(string meetId)
     {
-        meetID = meetId;
-        refresh();
-        timer2.Enabled = false;
+        //meetID = meetId;
+        //refresh();
+        //timer2.Enabled = false;
     }
 
         int countFlag = 0;
@@ -112,7 +112,7 @@ namespace check
             }
            
         }
-        void co_ChangeFlag() 
+        void co_ChangeFlag()
         {
             countFlag = 0;
         }
@@ -173,8 +173,7 @@ namespace check
             skinComboBox3.SelectedIndex = 0;
             skinComboBox4.SelectedIndex = 0;
             string meetTime = dateTimePicker1.Text;
-                meetID = this.skinComboBox1.SelectedValue.ToString();
-                
+                meetID = this.skinComboBox1.SelectedValue.ToString();             
                 skinCaptionPanel2.Text = "当前会议：" + skinComboBox1.Text.ToString();
                 System .Data .DataTable dt2 = check.SQL.SQL.getMeeter(meetID);
                 if (dt2 != null)
@@ -206,8 +205,8 @@ namespace check
                             checkTime = dt2.Rows[i]["attendTime"].ToString();
                                 break;}
                         }
-                        skinDataGridView1.Rows.Add(dt2.Rows[i]["uName"], dt2.Rows[i]["delegationName"].ToString(), identityName, stateName, checkTime);
-
+                        skinDataGridView1.Rows.Add(dt2.Rows[i]["uName"], dt2.Rows[i]["delegationName"].ToString(), identityName, stateName, checkTime,dt2.Rows[i]["manageId"].ToString());
+                        originalResoure = GetDgvToTable(skinDataGridView1);
                         
                     }
                     
@@ -432,42 +431,42 @@ namespace check
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            try
-            {
-                if (PingIpOrDomainName("115.24.161.31"))
-                {
-                    refresh();
-                    DataTable dtt = GetDgvToTable(skinDataGridView1);
-                    #region  总体统计
-                    int totalNum = 0;
-                    int attendNum = 0;
-                    int unattendNum = 0;
-                    for (int i = 0; i < dtt.Rows.Count; i++)
-                    {
-                        totalNum++;
-                        if (dtt.Rows[i]["Column6"].ToString() == "是")
-                        {
-                            attendNum++;
+            //try
+            //{
+            //    if (PingIpOrDomainName("115.24.161.31"))
+            //    {
+            //        //refresh();
+            //        DataTable dtt = GetDgvToTable(skinDataGridView1);
+            //        #region  总体统计
+            //        int totalNum = 0;
+            //        int attendNum = 0;
+            //        int unattendNum = 0;
+            //        for (int i = 0; i < dtt.Rows.Count; i++)
+            //        {
+            //            totalNum++;
+            //            if (dtt.Rows[i]["Column6"].ToString() == "是")
+            //            {
+            //                attendNum++;
 
-                        }
-                        else
-                            unattendNum++;
-                    }
-                    #endregion
-                    check.SQL.SQL.updateNumber(totalNum.ToString(), attendNum.ToString(), unattendNum.ToString(), meetID);
-                    if (countFlag == 1)
-                    {
-                        co.refresh(GetDgvToTable(skinDataGridView1));
+            //            }
+            //            else
+            //                unattendNum++;
+            //        }
+            //        #endregion
+            //        check.SQL.SQL.updateNumber(totalNum.ToString(), attendNum.ToString(), unattendNum.ToString(), meetID);
+            //        if (countFlag == 1)
+            //        {
+            //            co.refresh(GetDgvToTable(skinDataGridView1));
 
-                    }
-                }
+            //        }
+            //    }
                 
-            }
-            catch (Exception)
-            {
+            //}
+            //catch (Exception)
+            //{
 
-                MessageBox.Show("网络异常！");
-            }
+            //    MessageBox.Show("网络异常！");
+            //}
            
         }
 
@@ -476,6 +475,7 @@ namespace check
 
         }
 
+        DataTable originalResoure;
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
@@ -486,6 +486,7 @@ namespace check
                     string selectTime = dateTimePicker1.Text;
                     string departID = UserInfo["uDeptment"].ToString();
                     DataTable dt1 = check.SQL.SQL.getMeet(selectTime, departID);
+
                     if (dt1 != null)
                     {
                         this.skinComboBox1.Tag = "0";
@@ -562,7 +563,7 @@ namespace check
 
         }
 
-        private void timer3_Tick(object sender, EventArgs e)
+        private void timer3_Tick(object sender, EventArgs e)//网络状态
         {
            // int SystemState = 0;
             try
