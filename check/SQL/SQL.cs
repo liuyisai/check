@@ -103,7 +103,28 @@ namespace check.SQL
             }
 
         }
+        public static int setloginState(string userId, string loginState)//根据二维码设置人员信息
+        {
+            try
+            {
+                string sqlStr = "update MeUserInfo set loginState="+loginState+" where uId="+userId ;
 
+                int i = SqlHelper.ExecuteNonQuery(SqlHelper.GetConnSting(), CommandType.Text, sqlStr);
+
+                if (i > 0)
+                {
+                    return i;
+                }
+                return -1;
+            }
+            catch (SyntaxErrorException e)
+            {
+                ErrorHandle.showError(e);
+
+                return -1;
+            }
+
+        }
         public static DataTable getIsMeeting(string meetingId)//
         {
             try

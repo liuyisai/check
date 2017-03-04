@@ -17,10 +17,12 @@ namespace check
     public partial class Main : Skin_Mac
     {
         DataRow UserInfo;
-        public Main(DataRow info)
+        string userId;
+        public Main(DataRow info,string UserId)
         {
             InitializeComponent();
-            UserInfo = info;      
+            UserInfo = info;
+            userId = UserId;
         }
 
         private void toolStripTextBox1_Click(object sender, EventArgs e)
@@ -650,6 +652,13 @@ namespace check
                 MessageBox.Show("网络异常！");
             }
 
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            check.SQL.SQL.setloginState(userId, "0");    //修改登录标志位为已登录                             
+
+            //修改登录标志位为未登录
         }
 
 

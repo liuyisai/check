@@ -43,6 +43,7 @@
             this.skinbutton1 = new CCWin.SkinControl.SkinButton();
             this.skinButton2 = new CCWin.SkinControl.SkinButton();
             this.skinCaptionPanel2 = new CCWin.SkinControl.SkinCaptionPanel();
+            this.skinButton4 = new CCWin.SkinControl.SkinButton();
             this.skinTextBox1 = new CCWin.SkinControl.SkinTextBox();
             this.skinButton3 = new CCWin.SkinControl.SkinButton();
             this.skinComboBox4 = new CCWin.SkinControl.SkinComboBox();
@@ -73,7 +74,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.skinButton4 = new CCWin.SkinControl.SkinButton();
             this.skinCaptionPanel1.SuspendLayout();
             this.skinCaptionPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.skinDataGridView1)).BeginInit();
@@ -219,6 +219,25 @@
             this.skinCaptionPanel2.TabIndex = 3;
             this.skinCaptionPanel2.Text = "当前会议";
             this.skinCaptionPanel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // skinButton4
+            // 
+            this.skinButton4.BackColor = System.Drawing.Color.Transparent;
+            this.skinButton4.BaseColor = System.Drawing.Color.SkyBlue;
+            this.skinButton4.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinButton4.DownBack = null;
+            this.skinButton4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinButton4.Location = new System.Drawing.Point(669, 32);
+            this.skinButton4.MouseBack = null;
+            this.skinButton4.Name = "skinButton4";
+            this.skinButton4.NormlBack = null;
+            this.skinButton4.Radius = 20;
+            this.skinButton4.RoundStyle = CCWin.SkinClass.RoundStyle.All;
+            this.skinButton4.Size = new System.Drawing.Size(83, 23);
+            this.skinButton4.TabIndex = 9;
+            this.skinButton4.Text = "同步数据";
+            this.skinButton4.UseVisualStyleBackColor = false;
+            this.skinButton4.Click += new System.EventHandler(this.skinButton4_Click);
             // 
             // skinTextBox1
             // 
@@ -637,25 +656,6 @@
             this.timer3.Interval = 10000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // skinButton4
-            // 
-            this.skinButton4.BackColor = System.Drawing.Color.Transparent;
-            this.skinButton4.BaseColor = System.Drawing.Color.SkyBlue;
-            this.skinButton4.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinButton4.DownBack = null;
-            this.skinButton4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinButton4.Location = new System.Drawing.Point(669, 32);
-            this.skinButton4.MouseBack = null;
-            this.skinButton4.Name = "skinButton4";
-            this.skinButton4.NormlBack = null;
-            this.skinButton4.Radius = 20;
-            this.skinButton4.RoundStyle = CCWin.SkinClass.RoundStyle.All;
-            this.skinButton4.Size = new System.Drawing.Size(83, 23);
-            this.skinButton4.TabIndex = 9;
-            this.skinButton4.Text = "同步数据";
-            this.skinButton4.UseVisualStyleBackColor = false;
-            this.skinButton4.Click += new System.EventHandler(this.skinButton4_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -675,6 +675,7 @@
             this.MaximizeBox = false;
             this.Name = "Main";
             this.Text = "会议签到系统";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             this.skinCaptionPanel1.ResumeLayout(false);
             this.skinCaptionPanel1.PerformLayout();
