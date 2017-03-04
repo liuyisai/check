@@ -131,7 +131,7 @@ namespace check.SQL
             //string totalNum, string arriveNum,string noarriveNum,
             try
             {
-                string sqlStr = "insert MeNumber(meetingId) values("+meetingId +")";
+                string sqlStr = "insert MeNumber(meetingId,state) values("+meetingId +",0)";
                     //"insert MeNumber(nTotal,nReal,nNotArrive,meetingId) values('" + totalNum + "','" + arriveNum + "','" + noarriveNum + "'," + meetingId + ")";
 
                 int i = SqlHelper.ExecuteNonQuery(SqlHelper.GetConnSting(), CommandType.Text, sqlStr);
@@ -155,7 +155,7 @@ namespace check.SQL
         {
             try
             {
-                string sqlStr = "update MeNumber set nTotal='" + totalNum + "',nReal='" + arriveNum + "',nNotArrive='" + noarriveNum + "' where meetingId=" + meetingId;
+                string sqlStr = "update MeNumber set  nTotal='" + totalNum + "',nReal='" + arriveNum + "',nNotArrive='" + noarriveNum + "' where meetingId=" + meetingId;
 
                 int i = SqlHelper.ExecuteNonQuery(SqlHelper.GetConnSting(), CommandType.Text, sqlStr);
 
