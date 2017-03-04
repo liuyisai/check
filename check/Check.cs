@@ -92,7 +92,7 @@ namespace check
                     int identityCode = 0;
                     DataTable dt;
                     int i = 0;
-                    userChecktime = DateTime.Now.ToLocalTime().ToString();
+                    userChecktime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
                     dt = check.SQL.SQL.getMeeterInfo(QRcode, MeetId);
                     if (dt != null)
                     {
