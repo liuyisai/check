@@ -88,12 +88,26 @@ namespace check
                     string QRcode = skinTextBox1.Text.ToString().Trim();
                     string userPosition = "";
                     string userChecktime = "";
+                    string identityName = "";
+                    int identityCode = 0;
                     DataTable dt;
                     int i = 0;
                     userChecktime = DateTime.Now.ToLocalTime().ToString();
                     dt = check.SQL.SQL.getMeeterInfo(QRcode, MeetId);
                     if (dt != null)
                     {
+                        identityCode = (int)dt.Rows[0]["identityEum"];
+                        switch (identityCode)
+                        {
+                            case 1: identityName = "特邀代表";
+                                break;
+                            case 2: identityName = "列席代表";
+                                break;
+                            case 3: identityName = "正式代表";
+                                break;
+                            case 0: identityName = "";
+                                break;
+                        }
                         if ((int)dt.Rows[0]["attendState"] == 0)
                         {
                             i = check.SQL.SQL.setMeeterInfo(QRcode, userChecktime);
@@ -105,20 +119,12 @@ namespace check
                                 userPosition = QRcode.Substring(5, 2) + "排" + QRcode.Substring(7, 2) + "列";
                                 textBox3.Text = userPosition;
                                 textBox4.Text = userChecktime;
+                                textBox5.Text = identityName;
                                 skinTextBox1.Text = "";
                                 skinLabel5.Text = "签到成功！";
 
                             }
-                           //else
-                            //{
-                            //    skinLabel5.Text = "查无此人！";
-                            //    skinTextBox1.Text = "";
-                            //    textBox1.Text = "";
-                            //    textBox2.Text = "";
-                            //    textBox3.Text = "";
-                            //    textBox4.Text = "";
-
-                            //}
+                          
                         }
                         else
                         {
@@ -126,6 +132,7 @@ namespace check
                             textBox2.Text = dt.Rows[0]["delegationName"].ToString();
                             userPosition = QRcode.Substring(5, 2) + "排" + QRcode.Substring(7, 2) + "列";
                             textBox3.Text = userPosition;
+                            textBox5.Text = identityName;
                             textBox4.Text = dt.Rows[0]["attendTime"].ToString();
                             skinLabel5.Text = "此人已签到！";
                             skinTextBox1.Text = "";
@@ -139,6 +146,7 @@ namespace check
                         textBox2.Text = "";
                         textBox3.Text = "";
                         textBox4.Text = "";
+                        textBox5.Text = "";
 
                     }
                 }
@@ -180,6 +188,25 @@ namespace check
             //Main m = new Main();
             //shutdownRefresh shut = new shutdownRefresh(m.doRefresh);
             //shut();
+        }
+        int flag = 0;
+
+        private void skinSplitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            if (flag==0)
+            {
+                flag = 1;
+                this.Height = Height - 150;           
+                return;
+            }
+            else 
+            {
+                flag = 0;
+                this.Height = Height + 150;               
+                return;
+                
+            }
+
         }
 
    
