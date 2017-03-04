@@ -16,6 +16,7 @@ namespace check
         public LoginPW()
         {
             InitializeComponent();
+            
         }
 
         private void LoginPW_Load(object sender, EventArgs e)

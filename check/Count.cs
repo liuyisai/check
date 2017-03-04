@@ -19,6 +19,7 @@ namespace check
         {
             InitializeComponent();
             mainDt = dt;
+            timer1.Enabled = true;
         }
         
         private static Count instance;
@@ -418,6 +419,23 @@ namespace check
         {
             ClickFlag();
 
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked==true )
+            {
+                timer1.Enabled = true;
+            }
+            else
+            {
+                timer1.Enabled = false;
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            ClickFlag();
         }
     }
 }
