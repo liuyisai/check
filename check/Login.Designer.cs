@@ -35,6 +35,7 @@
             this.skinTextBox2 = new CCWin.SkinControl.SkinTextBox();
             this.skinTextBox1 = new CCWin.SkinControl.SkinTextBox();
             this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +64,7 @@
             this.skinButton1.Image = ((System.Drawing.Image)(resources.GetObject("skinButton1.Image")));
             this.skinButton1.ImageSize = new System.Drawing.Size(30, 30);
             this.skinButton1.InnerBorderColor = System.Drawing.Color.Transparent;
-            this.skinButton1.Location = new System.Drawing.Point(257, 159);
+            this.skinButton1.Location = new System.Drawing.Point(257, 145);
             this.skinButton1.MouseBack = null;
             this.skinButton1.MouseBaseColor = System.Drawing.Color.Transparent;
             this.skinButton1.Name = "skinButton1";
@@ -169,12 +170,25 @@
             this.skinLabel1.Size = new System.Drawing.Size(0, 17);
             this.skinLabel1.TabIndex = 7;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label1.Font = new System.Drawing.Font("隶书", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(252, 191);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 16);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "修改密码";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(336, 243);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.skinLabel1);
             this.Controls.Add(this.skinTextBox1);
             this.Controls.Add(this.skinTextBox2);
@@ -199,5 +213,6 @@
         private CCWin.SkinControl.SkinTextBox skinTextBox2;
         private CCWin.SkinControl.SkinTextBox skinTextBox1;
         private CCWin.SkinControl.SkinLabel skinLabel1;
+        private System.Windows.Forms.Label label1;
     }
 }

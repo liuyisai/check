@@ -114,6 +114,12 @@ namespace check
             return base.ProcessDialogKey(keyData);
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+            check.LoginPW loginPW = new LoginPW();
+            loginPW.ShowDialog();
+        }
+
 
 
 

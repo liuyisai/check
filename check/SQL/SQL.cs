@@ -120,11 +120,38 @@ namespace check.SQL
             catch (SyntaxErrorException e)
             {
                 ErrorHandle.showError(e);
-
                 return -1;
             }
-
         }
+
+        public static int updatePassword(string userId, string pssword,string psd)//根据二维码设置人员信息
+        {
+            try
+            {
+                string sqlStr = "select * from MeUserInfo where uId=" + userId + " and uPassword='" + pssword + "'";
+                DataSet dt = SqlHelper.ExecuteDataset(SqlHelper.GetConnSting(), CommandType.Text, sqlStr);
+                if (dt.Tables[0].Rows.Count > 0)
+                {
+                    string sqlStr1 = "update MeUserInfo set uPassword='" + psd + "' where uId="+userId;
+                    int i = SqlHelper.ExecuteNonQuery(SqlHelper.GetConnSting(), CommandType.Text, sqlStr1);
+                    if (i > 0)
+                    {
+                        return i;
+                    }
+                    return -1;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            catch (SyntaxErrorException e)
+            {
+                ErrorHandle.showError(e);
+                return -1;
+            }
+        }
+
         public static DataTable getIsMeeting(string meetingId)//
         {
             try
