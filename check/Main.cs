@@ -47,6 +47,7 @@ namespace check
             if (skinComboBox1.SelectedValue!=null )
             {
                 string Meet = skinComboBox1.SelectedValue.ToString();
+                refresh();
                 Check ch = Check.CreateForm(Meet,userId,originalResoure);
                 ch.Show();
                // ch.ChangeTimer+=ch_ChangeTimer;
@@ -96,8 +97,8 @@ namespace check
         private void skinButton2_Click(object sender, EventArgs e)
         {
             //Count co = new Count(MainDt);
-           
-            MainDt = GetDgvToTable(skinDataGridView1);
+            refresh();
+           // MainDt = GetDgvToTable(skinDataGridView1);
             if (MainDt.Rows .Count  != 0)
             {
                 co = Count.CreateForm(MainDt);
@@ -176,6 +177,9 @@ namespace check
                 meetID = this.skinComboBox1.SelectedValue.ToString();             
                 skinCaptionPanel2.Text = "当前会议：" + skinComboBox1.Text.ToString();
                 System .Data .DataTable dt2 = check.SQL.SQL.getMeeter(meetID);
+                //DataView dv = dt.DefaultView;
+                //dv.Sort="attendTime DESC";
+                //System.Data.DataTable dt2 = dv.ToTable();
                 if (dt2 != null)
                 {
 
@@ -206,6 +210,11 @@ namespace check
                                 break;}
                         }
                         skinDataGridView1.Rows.Add(dt2.Rows[i]["uName"], dt2.Rows[i]["delegationName"].ToString(), identityName, stateName, checkTime,dt2.Rows[i]["manageId"].ToString());
+                        MainDt = GetDgvToTable(skinDataGridView1);
+                        //DataTable adsl = GetDgvToTable(skinDataGridView1);
+                        //DataView dv = adsl.DefaultView;
+                        //dv.Sort = "attendTime DESC";
+                        //skinDataGridView1.DataSource = dv;
                         originalResoure = GetDgvToTable(skinDataGridView1);
                         
                     }

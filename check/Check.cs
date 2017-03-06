@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CCWin;
 using System.Net.NetworkInformation;
+using System.Threading;
 
 namespace check
 {
@@ -87,84 +88,28 @@ namespace check
         {
             try
             {
+                
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                textBox4.Text = "";
+                textBox5.Text = "";
                 if (PingIpOrDomainName("115.24.161.31"))
                 {
-                    string QRcode = skinTextBox1.Text.ToString().Trim();
-                    string userPosition = "";
-                    string userChecktime = "";
-                    string identityName = "";
-                    int identityCode = 0;
-                    DataTable dt;
-                    int i = 0;
-                    userChecktime = DateTime.Now.ToString("yyyy-MM-dd")+" "+DateTime.Now.ToString("HH:mm:ss");
-                    dt = check.SQL.SQL.getMeeterInfo(QRcode, MeetId);
-                    if (dt != null)
-                    {
-                        identityCode = (int)dt.Rows[0]["identityEum"];
-                        switch (identityCode)
-                        {
-                            case 1: identityName = "特邀代表";
-                                break;
-                            case 2: identityName = "列席代表";
-                                break;
-                            case 3: identityName = "正式代表";
-                                break;
-                            case 0: identityName = "";
-                                break;
-                        }
-                        if ((int)dt.Rows[0]["attendState"] == 0)
-                        {
-                            i = check.SQL.SQL.setMeeterInfo(QRcode, userChecktime,userId);
-                            if (i == 1)
-                            {
-
-                                textBox1.Text = dt.Rows[0]["uName"].ToString();
-                                textBox2.Text = dt.Rows[0]["delegationName"].ToString();
-                                userPosition = QRcode.Substring(5, 2) + "排" + QRcode.Substring(7, 2) + "列";
-                                textBox3.Text = userPosition;
-                                textBox4.Text = userChecktime;
-                                textBox5.Text = identityName;
-                                skinTextBox1.Text = "";
-                                skinLabel5.Text = "签到成功！";
-
-
-                                #region 上部数据表
-                                skinDataGridView1.Rows.Insert(0, textBox1.Text.ToString(), textBox2.Text.ToString(), textBox3.Text.ToString());
-                                skinDataGridView1.Rows[1].Selected = false ;
-                                skinDataGridView1.Rows[0].Selected=true;
-                                personNum++;
-                                skinLabel7.Text = "签到口-流量统计：" + personNum.ToString();                               
-                                #endregion
-                            }
-                          
-                        }
-                        else
-                        {
-                            textBox1.Text = dt.Rows[0]["uName"].ToString();
-                            textBox2.Text = dt.Rows[0]["delegationName"].ToString();
-                            userPosition = QRcode.Substring(5, 2) + "排" + QRcode.Substring(7, 2) + "列";
-                            textBox3.Text = userPosition;
-                            textBox5.Text = identityName;
-                            textBox4.Text = dt.Rows[0]["attendTime"].ToString();
-                            skinLabel5.Text = "此人已签到！";
-                            skinTextBox1.Text = "";
-                        }
-                    }
-                    else
-                    {
-                        skinLabel5.Text = "查无此人！";
-                        skinTextBox1.Text = "";
-                        textBox1.Text = "";
-                        textBox2.Text = "";
-                        textBox3.Text = "";
-                        textBox4.Text = "";
-                        textBox5.Text = "";
-
-                    }
+                    Function();
                 }
                 else 
                 {
-                    MessageBox.Show("请检查网络连接！");
+                    Thread.Sleep(3000);
+                    if (PingIpOrDomainName("115.24.161.31"))
+                    {
+                        Function();
+                    }
+                    else 
+                    {
+                        MessageBox.Show("请检查网络连接！");
+                    }
+                   
                 }
             }
             catch (Exception)
@@ -181,6 +126,88 @@ namespace check
             
         }
         int personNum = 0;
+
+        private void Function() 
+        {
+            string QRcode = skinTextBox1.Text.ToString().Trim();
+            string userPosition = "";
+            string userChecktime = "";
+            string identityName = "";
+            int identityCode = 0;
+            DataTable dt;
+            int i = 0;
+            string year = DateTime.Now.ToString("yyyy-MM-dd");
+            string time = DateTime.Now.ToString("HH:mm:ss");
+            userChecktime = year + " " + time;
+            dt = check.SQL.SQL.getMeeterInfo(QRcode, MeetId);
+            if (dt != null)
+            {
+                identityCode = (int)dt.Rows[0]["identityEum"];
+                switch (identityCode)
+                {
+                    case 1: identityName = "特邀代表";
+                        break;
+                    case 2: identityName = "列席代表";
+                        break;
+                    case 3: identityName = "正式代表";
+                        break;
+                    case 0: identityName = "";
+                        break;
+                }
+                if ((int)dt.Rows[0]["attendState"] == 0)
+                {
+                    i = check.SQL.SQL.setMeeterInfo(QRcode, userChecktime, userId);
+                    if (i == 1)
+                    {
+
+                        textBox1.Text = dt.Rows[0]["uName"].ToString();
+                        textBox2.Text = dt.Rows[0]["delegationName"].ToString();
+                        userPosition = QRcode.Substring(5, 2) + "排" + QRcode.Substring(7, 2) + "列";
+                        textBox3.Text = userPosition;
+                        textBox4.Text = time;
+                        textBox5.Text = identityName;
+                        skinTextBox1.Text = "";
+                        skinLabel5.Text = "签到成功！";
+
+
+                        #region 上部数据表
+                        skinDataGridView1.Rows.Insert(0, textBox1.Text.ToString(), textBox2.Text.ToString(), textBox5.Text.ToString(), userChecktime);
+                        skinDataGridView1.Rows[1].Selected = false;
+                        skinDataGridView1.Rows[0].Selected = true;
+                        personNum++;
+                        skinLabel7.Text = "签到口-流量统计：" + personNum.ToString();
+                        #endregion
+                    }
+
+                }
+                else
+                {
+                    textBox1.Text = dt.Rows[0]["uName"].ToString();
+                    textBox2.Text = dt.Rows[0]["delegationName"].ToString();
+                    userPosition = QRcode.Substring(5, 2) + "排" + QRcode.Substring(7, 2) + "列";
+                    textBox3.Text = userPosition;
+                    textBox5.Text = identityName;
+                    textBox4.Text = dt.Rows[0]["attendTime"].ToString();
+                    skinLabel5.Text = "此人已签到！";
+                    skinTextBox1.Text = "";
+                }
+            }
+            else
+            {
+                skinLabel5.Text = "查无此人！";
+                skinTextBox1.Text = "";
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                textBox4.Text = "";
+                textBox5.Text = "";
+
+            }
+        }
+
+
+
+
         protected override bool ProcessDialogKey(Keys keyData)
         {
             if (keyData == Keys.Enter)
@@ -192,17 +219,21 @@ namespace check
 
         private void Check_Load(object sender, EventArgs e)
         {
-           
-            for (int i = 0; i < allResource.Rows.Count; i++)
+            DataView view =allResource.DefaultView;
+            view.Sort="Column7 DESC";
+            DataTable dtall=view.ToTable();
+            //skinDataGridView1.Sort(skinDataGridView1.Columns["签到时间"],ListSortDirection.Descending);
+            for (int i = 0; i < dtall.Rows.Count; i++)
             {
-                if (allResource.Rows[i]["Column3"].ToString()==userId.ToString())
+                if (dtall.Rows[i]["Column3"].ToString()==userId.ToString())
                 {
-                    skinDataGridView1.Rows.Add(allResource.Rows[i]["Column1"], allResource.Rows[i]["Column5"], allResource.Rows[i]["Column2"]);
+                    skinDataGridView1.Rows.Add(dtall.Rows[i]["Column1"], dtall.Rows[i]["Column5"], dtall.Rows[i]["Column2"], dtall.Rows[i]["Column7"]);
                     personNum++;
                     
                 }
                 
             }
+            //skinDataGridView1.Sort(col);
             skinLabel7.Text = "签到口-流量统计："+personNum.ToString();
         }
 
@@ -220,13 +251,13 @@ namespace check
             if (flag==0)
             {
                 flag = 1;
-                this.Height = Height - 150;           
+                this.Width = Width - 590;           
                 return;
             }
             else 
             {
                 flag = 0;
-                this.Height = Height + 150;               
+                this.Width = Width + 590;               
                 return;
                 
             }

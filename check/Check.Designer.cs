@@ -50,11 +50,12 @@
             this.skinLabel2 = new CCWin.SkinControl.SkinLabel();
             this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
             this.skinSplitContainer1 = new CCWin.SkinControl.SkinSplitContainer();
+            this.skinLabel7 = new CCWin.SkinControl.SkinLabel();
             this.skinDataGridView1 = new CCWin.SkinControl.SkinDataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.skinLabel7 = new CCWin.SkinControl.SkinLabel();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.skinGroupBox1.SuspendLayout();
             this.skinGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.skinSplitContainer1)).BeginInit();
@@ -66,14 +67,14 @@
             // 
             // skinGroupBox1
             // 
-            this.skinGroupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.skinGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.skinGroupBox1.BackColor = System.Drawing.Color.Transparent;
             this.skinGroupBox1.BorderColor = System.Drawing.Color.SkyBlue;
             this.skinGroupBox1.Controls.Add(this.skinButton1);
             this.skinGroupBox1.Controls.Add(this.skinTextBox1);
             this.skinGroupBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinGroupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.skinGroupBox1.Location = new System.Drawing.Point(11, 16);
+            this.skinGroupBox1.Location = new System.Drawing.Point(17, 14);
             this.skinGroupBox1.Name = "skinGroupBox1";
             this.skinGroupBox1.RectBackColor = System.Drawing.Color.White;
             this.skinGroupBox1.RoundStyle = CCWin.SkinClass.RoundStyle.All;
@@ -123,6 +124,7 @@
             this.skinTextBox1.NormlBack = null;
             this.skinTextBox1.Padding = new System.Windows.Forms.Padding(5);
             this.skinTextBox1.ReadOnly = false;
+            this.skinTextBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.skinTextBox1.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.skinTextBox1.Size = new System.Drawing.Size(169, 44);
             // 
@@ -136,17 +138,18 @@
             this.skinTextBox1.SkinTxt.Name = "BaseText";
             this.skinTextBox1.SkinTxt.Size = new System.Drawing.Size(159, 34);
             this.skinTextBox1.SkinTxt.TabIndex = 0;
+            this.skinTextBox1.SkinTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.skinTextBox1.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.skinTextBox1.SkinTxt.WaterText = "";
             this.skinTextBox1.TabIndex = 0;
-            this.skinTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.skinTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.skinTextBox1.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.skinTextBox1.WaterText = "";
             this.skinTextBox1.WordWrap = true;
             // 
             // skinGroupBox2
             // 
-            this.skinGroupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.skinGroupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.skinGroupBox2.BackColor = System.Drawing.Color.Transparent;
             this.skinGroupBox2.BorderColor = System.Drawing.Color.SkyBlue;
             this.skinGroupBox2.Controls.Add(this.textBox5);
@@ -162,7 +165,7 @@
             this.skinGroupBox2.Controls.Add(this.skinLabel1);
             this.skinGroupBox2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinGroupBox2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.skinGroupBox2.Location = new System.Drawing.Point(10, 131);
+            this.skinGroupBox2.Location = new System.Drawing.Point(18, 131);
             this.skinGroupBox2.Name = "skinGroupBox2";
             this.skinGroupBox2.RectBackColor = System.Drawing.Color.White;
             this.skinGroupBox2.RoundStyle = CCWin.SkinClass.RoundStyle.All;
@@ -181,6 +184,7 @@
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(140, 23);
             this.textBox5.TabIndex = 11;
+            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // skinLabel6
             // 
@@ -211,8 +215,10 @@
             this.textBox4.Location = new System.Drawing.Point(95, 215);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
+            this.textBox4.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.textBox4.Size = new System.Drawing.Size(140, 23);
             this.textBox4.TabIndex = 7;
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox3
             // 
@@ -221,6 +227,7 @@
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(140, 23);
             this.textBox3.TabIndex = 6;
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox2
             // 
@@ -229,6 +236,7 @@
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(140, 23);
             this.textBox2.TabIndex = 5;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox1
             // 
@@ -237,6 +245,7 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(140, 23);
             this.textBox1.TabIndex = 4;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // skinLabel4
             // 
@@ -291,30 +300,50 @@
             // 
             this.skinSplitContainer1.Cursor = System.Windows.Forms.Cursors.Default;
             this.skinSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.skinSplitContainer1.IsSplitterFixed = true;
             this.skinSplitContainer1.Location = new System.Drawing.Point(4, 32);
             this.skinSplitContainer1.Name = "skinSplitContainer1";
-            this.skinSplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // skinSplitContainer1.Panel1
             // 
-            this.skinSplitContainer1.Panel1.Controls.Add(this.skinLabel7);
             this.skinSplitContainer1.Panel1.Controls.Add(this.skinDataGridView1);
+            this.skinSplitContainer1.Panel1.Controls.Add(this.skinLabel7);
+            this.skinSplitContainer1.Panel1MinSize = 1;
             // 
             // skinSplitContainer1.Panel2
             // 
             this.skinSplitContainer1.Panel2.Controls.Add(this.skinGroupBox1);
             this.skinSplitContainer1.Panel2.Controls.Add(this.skinGroupBox2);
-            this.skinSplitContainer1.Size = new System.Drawing.Size(272, 593);
-            this.skinSplitContainer1.SplitterDistance = 157;
-            this.skinSplitContainer1.SplitterWidth = 8;
+            this.skinSplitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.skinSplitContainer1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.skinSplitContainer1.Size = new System.Drawing.Size(882, 435);
+            this.skinSplitContainer1.SplitterDistance = 591;
+            this.skinSplitContainer1.SplitterWidth = 10;
             this.skinSplitContainer1.TabIndex = 2;
+            this.skinSplitContainer1.Tag = "d";
             this.skinSplitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.skinSplitContainer1_SplitterMoved);
+            // 
+            // skinLabel7
+            // 
+            this.skinLabel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.skinLabel7.AutoSize = true;
+            this.skinLabel7.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabel7.BorderColor = System.Drawing.Color.White;
+            this.skinLabel7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel7.Location = new System.Drawing.Point(256, 11);
+            this.skinLabel7.Name = "skinLabel7";
+            this.skinLabel7.Size = new System.Drawing.Size(97, 17);
+            this.skinLabel7.TabIndex = 2;
+            this.skinLabel7.Text = "签到口-流量统计";
             // 
             // skinDataGridView1
             // 
             this.skinDataGridView1.AllowUserToAddRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(253)))));
             this.skinDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.skinDataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.skinDataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.skinDataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
             this.skinDataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -332,7 +361,8 @@
             this.skinDataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column5,
-            this.Column2});
+            this.Column2,
+            this.Column3});
             this.skinDataGridView1.ColumnSelectForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
@@ -342,14 +372,14 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.skinDataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.skinDataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.skinDataGridView1.EnableHeadersVisualStyles = false;
             this.skinDataGridView1.GridColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.skinDataGridView1.HeadFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinDataGridView1.HeadSelectForeColor = System.Drawing.SystemColors.HighlightText;
-            this.skinDataGridView1.Location = new System.Drawing.Point(0, 24);
+            this.skinDataGridView1.Location = new System.Drawing.Point(3, 34);
             this.skinDataGridView1.Name = "skinDataGridView1";
             this.skinDataGridView1.ReadOnly = true;
+            this.skinDataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.skinDataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.skinDataGridView1.RowHeadersVisible = false;
             this.skinDataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -360,7 +390,7 @@
             this.skinDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.skinDataGridView1.RowTemplate.Height = 23;
             this.skinDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.skinDataGridView1.Size = new System.Drawing.Size(272, 133);
+            this.skinDataGridView1.Size = new System.Drawing.Size(585, 387);
             this.skinDataGridView1.TabIndex = 1;
             this.skinDataGridView1.TitleBack = null;
             this.skinDataGridView1.TitleBackColorBegin = System.Drawing.Color.White;
@@ -384,24 +414,18 @@
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
-            // skinLabel7
+            // Column3
             // 
-            this.skinLabel7.AutoSize = true;
-            this.skinLabel7.BackColor = System.Drawing.Color.Transparent;
-            this.skinLabel7.BorderColor = System.Drawing.Color.White;
-            this.skinLabel7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel7.Location = new System.Drawing.Point(82, 4);
-            this.skinLabel7.Name = "skinLabel7";
-            this.skinLabel7.Size = new System.Drawing.Size(97, 17);
-            this.skinLabel7.TabIndex = 2;
-            this.skinLabel7.Text = "签到口-流量统计";
+            this.Column3.HeaderText = "签到时间";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             // 
             // Check
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
-            this.ClientSize = new System.Drawing.Size(280, 629);
+            this.ClientSize = new System.Drawing.Size(890, 471);
             this.Controls.Add(this.skinSplitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -443,10 +467,11 @@
         private CCWin.SkinControl.SkinLabel skinLabel6;
         private CCWin.SkinControl.SkinSplitContainer skinSplitContainer1;
         private CCWin.SkinControl.SkinDataGridView skinDataGridView1;
+        private CCWin.SkinControl.SkinLabel skinLabel7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private CCWin.SkinControl.SkinLabel skinLabel7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
 
     }
 }

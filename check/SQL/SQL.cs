@@ -39,7 +39,7 @@ namespace check.SQL
         {
             try
             {
-                string sqlStr = "select MePerAttend.*,MeDelegation.* from MePerAttend,MeDelegation where MePerAttend.meetingId=" + id + " and MeDelegation.id=MePerAttend.delegationId order by MePerAttend.attendTime DESC";
+                string sqlStr = "select MePerAttend.*,MeDelegation.* from MePerAttend,MeDelegation where MePerAttend.meetingId=" + id + " and MeDelegation.id=MePerAttend.delegationId order by MePerAttend.delegationId";
 
                 DataSet dt = SqlHelper.ExecuteDataset(SqlHelper.GetConnSting(), CommandType.Text, sqlStr);
 

@@ -17,9 +17,12 @@ namespace check
        System.Data.DataTable mainDt=null ;
        public Count(System.Data.DataTable dt)
         {
+           
             InitializeComponent();
             mainDt = dt;
             timer1.Enabled = true;
+
+            
         }
         
         private static Count instance;
