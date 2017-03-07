@@ -107,6 +107,7 @@ namespace check
                     }
                     else 
                     {
+                        skinLabel5.Text = "";
                         MessageBox.Show("请检查网络连接！");
                     }
                    
