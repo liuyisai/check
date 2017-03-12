@@ -163,7 +163,7 @@ namespace check
 
                         textBox1.Text = dt.Rows[0]["uName"].ToString();
                         textBox2.Text = dt.Rows[0]["delegationName"].ToString();
-                        userPosition = QRcode.Substring(5, 2) + "排" + QRcode.Substring(7, 2) + "列";
+                        userPosition = QRcode.ToUpper().Substring(5, 2) + "排" + QRcode.ToUpper().Substring(7, 2) + "列";
                         textBox3.Text = userPosition;
                         textBox4.Text = time;
                         textBox5.Text = identityName;
@@ -185,7 +185,7 @@ namespace check
                 {
                     textBox1.Text = dt.Rows[0]["uName"].ToString();
                     textBox2.Text = dt.Rows[0]["delegationName"].ToString();
-                    userPosition = QRcode.Substring(5, 2) + "排" + QRcode.Substring(7, 2) + "列";
+                    userPosition = QRcode.ToUpper().Substring(5, 2) + "排" + QRcode.ToUpper().Substring(7, 2) + "列";
                     textBox3.Text = userPosition;
                     textBox5.Text = identityName;
                     textBox4.Text = dt.Rows[0]["attendTime"].ToString();
