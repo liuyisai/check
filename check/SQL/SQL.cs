@@ -62,8 +62,8 @@ namespace check.SQL
         {
             try
             {
-                string sqlStr = "select MePerAttend.*,MeDelegation.* from MePerAttend,MeDelegation,MeUserInfo where MePerAttend.QRcode='" + code
-                    + "' and MeDelegation.id=MePerAttend.delegationId and MePerAttend.meetingId=" + meetid + " order by MePerAttend.timeStamp desc";
+                string sqlStr = "select MePerAttend.*,MeDelegation.* from MePerAttend,MeDelegation where MePerAttend.QRcode='" + code
+                    + "' and MeDelegation.id=MePerAttend.delegationId and MePerAttend.meetingId=" + meetid;
 
                 DataSet dt = SqlHelper.ExecuteDataset(SqlHelper.GetConnSting(), CommandType.Text, sqlStr);
 

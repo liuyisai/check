@@ -64,7 +64,7 @@
             this.skinButton1.Image = ((System.Drawing.Image)(resources.GetObject("skinButton1.Image")));
             this.skinButton1.ImageSize = new System.Drawing.Size(30, 30);
             this.skinButton1.InnerBorderColor = System.Drawing.Color.Transparent;
-            this.skinButton1.Location = new System.Drawing.Point(257, 145);
+            this.skinButton1.Location = new System.Drawing.Point(257, 157);
             this.skinButton1.MouseBack = null;
             this.skinButton1.MouseBaseColor = System.Drawing.Color.Transparent;
             this.skinButton1.Name = "skinButton1";
