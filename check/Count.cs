@@ -319,7 +319,7 @@ namespace check
                     attend = mainDt.Rows[i]["Column6"].ToString();
                     switch (delegator)
                     {
-                        case "正式代表": 
+                        case "正式代表":   
                             {
                                 if (attend=="否")
                                 {

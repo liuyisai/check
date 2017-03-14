@@ -50,8 +50,8 @@
             this.skinLabel2 = new CCWin.SkinControl.SkinLabel();
             this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
             this.skinSplitContainer1 = new CCWin.SkinControl.SkinSplitContainer();
-            this.skinLabel7 = new CCWin.SkinControl.SkinLabel();
             this.skinDataGridView1 = new CCWin.SkinControl.SkinDataGridView();
+            this.skinLabel7 = new CCWin.SkinControl.SkinLabel();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,7 +74,7 @@
             this.skinGroupBox1.Controls.Add(this.skinTextBox1);
             this.skinGroupBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinGroupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.skinGroupBox1.Location = new System.Drawing.Point(17, 14);
+            this.skinGroupBox1.Location = new System.Drawing.Point(11, 14);
             this.skinGroupBox1.Name = "skinGroupBox1";
             this.skinGroupBox1.RectBackColor = System.Drawing.Color.White;
             this.skinGroupBox1.RoundStyle = CCWin.SkinClass.RoundStyle.All;
@@ -165,7 +165,7 @@
             this.skinGroupBox2.Controls.Add(this.skinLabel1);
             this.skinGroupBox2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinGroupBox2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.skinGroupBox2.Location = new System.Drawing.Point(18, 131);
+            this.skinGroupBox2.Location = new System.Drawing.Point(12, 131);
             this.skinGroupBox2.Name = "skinGroupBox2";
             this.skinGroupBox2.RectBackColor = System.Drawing.Color.White;
             this.skinGroupBox2.RoundStyle = CCWin.SkinClass.RoundStyle.All;
@@ -308,13 +308,14 @@
             // 
             this.skinSplitContainer1.Panel1.Controls.Add(this.skinDataGridView1);
             this.skinSplitContainer1.Panel1.Controls.Add(this.skinLabel7);
+            this.skinSplitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.skinSplitContainer1.Panel1MinSize = 1;
             // 
             // skinSplitContainer1.Panel2
             // 
             this.skinSplitContainer1.Panel2.Controls.Add(this.skinGroupBox1);
             this.skinSplitContainer1.Panel2.Controls.Add(this.skinGroupBox2);
-            this.skinSplitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.skinSplitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.skinSplitContainer1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.skinSplitContainer1.Size = new System.Drawing.Size(882, 435);
             this.skinSplitContainer1.SplitterDistance = 591;
@@ -322,20 +323,6 @@
             this.skinSplitContainer1.TabIndex = 2;
             this.skinSplitContainer1.Tag = "d";
             this.skinSplitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.skinSplitContainer1_SplitterMoved);
-            // 
-            // skinLabel7
-            // 
-            this.skinLabel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.skinLabel7.AutoSize = true;
-            this.skinLabel7.BackColor = System.Drawing.Color.Transparent;
-            this.skinLabel7.BorderColor = System.Drawing.Color.White;
-            this.skinLabel7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel7.Location = new System.Drawing.Point(256, 11);
-            this.skinLabel7.Name = "skinLabel7";
-            this.skinLabel7.Size = new System.Drawing.Size(97, 17);
-            this.skinLabel7.TabIndex = 2;
-            this.skinLabel7.Text = "签到口-流量统计";
             // 
             // skinDataGridView1
             // 
@@ -396,6 +383,20 @@
             this.skinDataGridView1.TitleBackColorBegin = System.Drawing.Color.White;
             this.skinDataGridView1.TitleBackColorEnd = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(196)))), ((int)(((byte)(242)))));
             // 
+            // skinLabel7
+            // 
+            this.skinLabel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.skinLabel7.AutoSize = true;
+            this.skinLabel7.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabel7.BorderColor = System.Drawing.Color.White;
+            this.skinLabel7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel7.Location = new System.Drawing.Point(256, 11);
+            this.skinLabel7.Name = "skinLabel7";
+            this.skinLabel7.Size = new System.Drawing.Size(97, 17);
+            this.skinLabel7.TabIndex = 2;
+            this.skinLabel7.Text = "签到口-流量统计";
+            // 
             // Column1
             // 
             this.Column1.HeaderText = "姓名";
@@ -404,9 +405,11 @@
             // 
             // Column5
             // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column5.HeaderText = "代表团";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
+            this.Column5.Width = 65;
             // 
             // Column2
             // 
@@ -416,9 +419,11 @@
             // 
             // Column3
             // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column3.HeaderText = "签到时间";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
+            this.Column3.Width = 77;
             // 
             // Check
             // 
