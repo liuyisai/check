@@ -157,7 +157,7 @@ namespace check
                 }
                 if ((int)dt.Rows[0]["attendState"] == 0)
                 {
-                    i = check.SQL.SQL.setMeeterInfo(QRcode, userChecktime, userId);
+                    i = check.SQL.SQL.setMeeterInfo(QRcode, userChecktime, userId,MeetId);
                     if (i == 1)
                     {
 

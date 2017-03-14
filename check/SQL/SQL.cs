@@ -81,11 +81,11 @@ namespace check.SQL
             }
 
         }
-        public static int   setMeeterInfo(string QRcode,string checkTime,string mID)//根据二维码设置人员信息
+        public static int   setMeeterInfo(string QRcode,string checkTime,string mID,string meetid)//根据二维码设置人员信息
         {
             try
             {
-                string sqlStr = "update MePerAttend set attendState=1,attendTime='"+checkTime+"',manageId='"+mID+"' where QRcode='"+QRcode+"'";
+                string sqlStr = "update MePerAttend set attendState=1,attendTime='"+checkTime+"',manageId='"+mID+"' where QRcode='"+QRcode+"' and meetingId="+meetid ;
 
                 int  i = SqlHelper.ExecuteNonQuery(SqlHelper.GetConnSting(), CommandType.Text, sqlStr);
 
