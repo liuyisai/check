@@ -648,7 +648,7 @@ namespace check
                                 unattendNum++;
                         }
                         check.SQL.SQL.updateNumber(totalNum.ToString(), attendNum.ToString(), unattendNum.ToString(), meetID);
-                        co.refresh(GetDgvToTable(skinDataGridView1));
+                        co.refresh2(GetDgvToTable(skinDataGridView1));
                     }
                 }
                 else
