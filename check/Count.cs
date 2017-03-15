@@ -14,25 +14,25 @@ namespace check
 {
     public partial class Count : Skin_Mac
     {
-       System.Data.DataTable mainDt=null ;
-       public Count(System.Data.DataTable dt)
+        System.Data.DataTable mainDt = null;
+        public Count(System.Data.DataTable dt)
         {
-           
+
             InitializeComponent();
             mainDt = dt;
             timer1.Enabled = true;
 
-            
+
         }
-        
+
         private static Count instance;
 
-        public static Count CreateForm(System.Data.DataTable dt1) 
+        public static Count CreateForm(System.Data.DataTable dt1)
         {
-            if (instance ==null||instance.IsDisposed)
+            if (instance == null || instance.IsDisposed)
             {
                 instance = new Count(dt1);
-                
+
             }
             return instance;
         }
@@ -44,7 +44,6 @@ namespace check
 
         public delegate void DelegateUpdateCount2();
         public event DelegateUpdateCount2 ClickFlag;
-       
 
 
 
@@ -65,7 +64,8 @@ namespace check
 
 
 
-       
+
+
 
 
 
@@ -101,10 +101,10 @@ namespace check
             int rr = 0;
             for (int r = 0; r < skinDataGridView1.Rows.Count; r++)
             {
-               
+
                 if (skinDataGridView1.Rows[r].Visible)
                 {
-                   
+
                     for (int i = 0; i < skinDataGridView1.ColumnCount; i++)
                     {
                         worksheet.Cells[rr + 2, i + 1] = skinDataGridView1.Rows[r].Cells[i].Value;
@@ -137,7 +137,7 @@ namespace check
         }
         public void refresh()
         {
-           
+
             skinDataGridView1.Rows.Clear();
             #region  总体统计
             int totalNum = 0;
@@ -171,7 +171,7 @@ namespace check
             int formalSum = 0, attendSum = 0, specialSum = 0, dueSum = 0, unarrivalSum = 0;
             string delegation = "", delegationNext = "";
             int formalerNum = 0, attenderNum = 0, specialerNum = 0, dueNum = 0, unarriveNum = 0;
-            int dueformalerNum = 0, dueattenderNum=0, duespecialerNum = 0;
+            int dueformalerNum = 0, dueattenderNum = 0, duespecialerNum = 0;
             string delegator, attend;
 
             while (flag == 0)
@@ -208,7 +208,7 @@ namespace check
                                     unarriveNum++;
 
                                 }
-                                else 
+                                else
                                 {
                                     dueattenderNum++;
                                 }
@@ -221,7 +221,7 @@ namespace check
                                     unarriveNum++;
 
                                 }
-                                else 
+                                else
                                 {
                                     duespecialerNum++;
                                 }
@@ -240,7 +240,7 @@ namespace check
                     }
 
                 }
-                skinDataGridView1.Rows.Add(delegation, dueNum, unarriveNum ,formalerNum, attenderNum, specialerNum);
+                skinDataGridView1.Rows.Add(delegation, dueNum, unarriveNum, formalerNum, attenderNum, specialerNum);
                 formalSum = formalSum + formalerNum;
                 attendSum = attendSum + attenderNum;
                 specialSum = specialSum + specialerNum;
@@ -253,8 +253,8 @@ namespace check
                     flag = 0;
             }
 
-            skinDataGridView1.Rows.Add("总计", dueSum, unarrivalSum,formalSum, attendSum, specialSum);
-            skinLabel9.Text = "正式代表: "+dueformalerNum.ToString(); skinLabel10.Text = "列席代表: "+dueattenderNum.ToString(); skinLabel11.Text = "特邀代表: "+duespecialerNum.ToString();
+            skinDataGridView1.Rows.Add("总计", dueSum, unarrivalSum, formalSum, attendSum, specialSum);
+            skinLabel9.Text = "正式代表: " + dueformalerNum.ToString(); skinLabel10.Text = "列席代表: " + dueattenderNum.ToString(); skinLabel11.Text = "特邀代表: " + duespecialerNum.ToString();
             skinLabel18.Text = "正式代表: " + formalSum.ToString(); skinLabel19.Text = "列席代表: " + attendSum.ToString(); skinLabel20.Text = "特邀代表: " + specialSum.ToString();
 
 
@@ -271,7 +271,7 @@ namespace check
 
 
         }
-        public void refresh(System .Data .DataTable  dt)
+        public void refresh(System.Data.DataTable dt)
         {
             mainDt = dt;
             skinDataGridView1.Rows.Clear();
@@ -279,10 +279,10 @@ namespace check
             int totalNum = 0;
             int attendNum = 0;
             int unattendNum = 0;
-            for (int i = 0; i <mainDt.Rows.Count; i++)
+            for (int i = 0; i < mainDt.Rows.Count; i++)
             {
                 totalNum++;
-                if (mainDt.Rows[i]["Column6"].ToString()=="是")
+                if (mainDt.Rows[i]["Column6"].ToString() == "是")
                 {
                     attendNum++;
 
@@ -290,7 +290,7 @@ namespace check
                 else
                     unattendNum++;
 
-                
+
             }
             textBox1.Text = totalNum.ToString();
             textBox2.Text = attendNum.ToString();
@@ -298,40 +298,40 @@ namespace check
             #endregion
 
             #region 具体信息
-            int flag=0;
-            int k = 0 ;
+            int flag = 0;
+            int k = 0;
             int formalSum = 0, attendSum = 0, specialSum = 0, dueSum = 0, unarrivalSum = 0;
-            string delegation="",delegationNext="";
+            string delegation = "", delegationNext = "";
             int dueformalerNum = 0, dueattenderNum = 0, duespecialerNum = 0;
-            int formalerNum = 0,attenderNum=0,specialerNum=0,dueNum=0,unarriveNum=0;
-            string delegator,attend;
+            int formalerNum = 0, attenderNum = 0, specialerNum = 0, dueNum = 0, unarriveNum = 0;
+            string delegator, attend;
 
-            while (flag==0)
+            while (flag == 0)
             {
                 for (int i = k; i < mainDt.Rows.Count; i++)
                 {
                     delegation = mainDt.Rows[i]["Column5"].ToString();
-                    if (i+1<mainDt.Rows.Count)
+                    if (i + 1 < mainDt.Rows.Count)
                         delegationNext = mainDt.Rows[i + 1]["Column5"].ToString();
                     else
-                        delegationNext = "";                  
+                        delegationNext = "";
                     delegator = mainDt.Rows[i]["Column2"].ToString();
                     attend = mainDt.Rows[i]["Column6"].ToString();
                     switch (delegator)
                     {
-                        case "正式代表":   
+                        case "正式代表":
                             {
-                                if (attend=="否")
+                                if (attend == "否")
                                 {
                                     formalerNum++;
                                     unarriveNum++;
-                                    
+
                                 }
                                 else
                                 {
                                     dueformalerNum++;
                                 }
-                            }break;
+                            } break;
                         case "列席代表":
                             {
                                 if (attend == "否")
@@ -344,7 +344,7 @@ namespace check
                                 {
                                     dueattenderNum++;
                                 }
-                            }break;
+                            } break;
                         case "特邀代表":
                             {
                                 if (attend == "否")
@@ -357,22 +357,22 @@ namespace check
                                 {
                                     duespecialerNum++;
                                 }
-                            }break;
-                       
+                            } break;
+
                     }
                     dueNum++;
-                    if (delegation==delegationNext)
+                    if (delegation == delegationNext)
                     {
                         continue;
                     }
                     else
                     {
-                        k = i+1;
+                        k = i + 1;
                         break;
                     }
-                    
+
                 }
-                skinDataGridView1.Rows.Add(delegation, dueNum, unarriveNum,formalerNum, attenderNum, specialerNum);
+                skinDataGridView1.Rows.Add(delegation, dueNum, unarriveNum, formalerNum, attenderNum, specialerNum);
                 formalSum = formalSum + formalerNum;
                 attendSum = attendSum + attenderNum;
                 specialSum = specialSum + specialerNum;
@@ -385,16 +385,16 @@ namespace check
                     flag = 0;
             }
 
-            skinDataGridView1.Rows.Add("总计",dueSum,unarrivalSum,formalSum,attendSum, specialSum);
+            skinDataGridView1.Rows.Add("总计", dueSum, unarrivalSum, formalSum, attendSum, specialSum);
             skinLabel9.Text = "正式代表: " + dueformalerNum.ToString(); skinLabel10.Text = "列席代表: " + dueattenderNum.ToString(); skinLabel11.Text = "特邀代表: " + duespecialerNum.ToString();
             skinLabel18.Text = "正式代表: " + formalSum.ToString(); skinLabel19.Text = "列席代表: " + attendSum.ToString(); skinLabel20.Text = "特邀代表: " + specialSum.ToString();
-	
+
 
             #endregion
 
 
-           
-          
+
+
 
 
 
@@ -426,7 +426,7 @@ namespace check
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked==true )
+            if (checkBox1.Checked == true)
             {
                 timer1.Enabled = true;
             }
@@ -440,5 +440,7 @@ namespace check
         {
             ClickFlag();
         }
+
+     
     }
 }

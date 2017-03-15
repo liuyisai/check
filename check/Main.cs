@@ -188,11 +188,11 @@ namespace check
                         identityCode = (int)dt2.Rows[i]["identityEum"];
                         switch(identityCode)
                         {
-                            case 1 :identityName="特邀代表";
+                            case 3 :identityName="特邀代表";
                                 break;
                             case 2: identityName="列席代表";
                                 break;
-                            case 3: identityName="正式代表";
+                            case 1: identityName="正式代表";
                                 break ;
                             case 0: identityName="";
                                 break;
