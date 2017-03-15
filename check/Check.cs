@@ -226,7 +226,7 @@ namespace check
             //skinDataGridView1.Sort(skinDataGridView1.Columns["签到时间"],ListSortDirection.Descending);
             for (int i = 0; i < dtall.Rows.Count; i++)
             {
-                if (dtall.Rows[i]["Column3"].ToString()==userId.ToString())
+                if (dtall.Rows[i]["Column3"].ToString() == userId.ToString() && dtall.Rows[i]["Column6"].ToString() == "是")
                 {
                     skinDataGridView1.Rows.Add(dtall.Rows[i]["Column1"], dtall.Rows[i]["Column5"], dtall.Rows[i]["Column2"], dtall.Rows[i]["Column7"]);
                     personNum++;
