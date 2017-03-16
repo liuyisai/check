@@ -172,11 +172,21 @@ namespace check
 
 
                         #region 上部数据表
-                        skinDataGridView1.Rows.Insert(0, textBox1.Text.ToString(), textBox2.Text.ToString(), textBox5.Text.ToString(), userChecktime);
-                        skinDataGridView1.Rows[1].Selected = false;
-                        skinDataGridView1.Rows[0].Selected = true;
-                        personNum++;
-                        skinLabel7.Text = "签到口-流量统计：" + personNum.ToString();
+                        if (skinDataGridView1.Rows.Count >= 1)
+                        {
+                            skinDataGridView1.Rows.Insert(0, textBox1.Text.ToString(), textBox2.Text.ToString(), textBox5.Text.ToString(), userChecktime);
+                            skinDataGridView1.Rows[1].Selected = false;
+                            skinDataGridView1.Rows[0].Selected = true;
+                            personNum++;
+                            skinLabel7.Text = "签到口-流量统计：" + personNum.ToString();
+                        }
+                        else 
+                        {
+                            skinDataGridView1.Rows.Insert(0, textBox1.Text.ToString(), textBox2.Text.ToString(), textBox5.Text.ToString(), userChecktime);
+                            personNum++;
+                            skinLabel7.Text = "签到口-流量统计：" + personNum.ToString();
+                        }
+                      
                         #endregion
                     }
 

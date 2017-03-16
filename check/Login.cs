@@ -97,7 +97,7 @@ namespace check
             catch (Exception)
             {
 
-                MessageBox.Show("请检查网络连接！");
+                MessageBox.Show("网络异常！");
             }
            
 
