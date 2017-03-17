@@ -97,39 +97,49 @@ namespace check
         private void skinButton2_Click(object sender, EventArgs e)
         {
             //Count co = new Count(MainDt);
-            refresh();
-           // MainDt = GetDgvToTable(skinDataGridView1);
-            if (MainDt.Rows .Count  != 0)
+            try
             {
-                co = Count.CreateForm(MainDt);
-                co.Show();
-                countFlag = 1;
-                co.ChangeFlag+=co_ChangeFlag;
-                co.ClickFlag += co_ClickFlag;
-                if (countFlag == 1)
+                refresh();
+                if (MainDt.Rows.Count != 0)
                 {
-                    DataTable dtt = GetDgvToTable(skinDataGridView1);
-                    int totalNum = 0;
-                    int attendNum = 0;
-                    int unattendNum = 0;
-                    for (int i = 0; i < dtt.Rows.Count; i++)
+                   
+                    co = Count.CreateForm(MainDt);
+                    co.Show();
+                    countFlag = 1;
+                    co.ChangeFlag += co_ChangeFlag;
+                    co.ClickFlag += co_ClickFlag;
+                    if (countFlag == 1)
                     {
-                        totalNum++;
-                        if (dtt.Rows[i]["Column6"].ToString() == "是")
+                        DataTable dtt = GetDgvToTable(skinDataGridView1);
+                        int totalNum = 0;
+                        int attendNum = 0;
+                        int unattendNum = 0;
+                        for (int i = 0; i < dtt.Rows.Count; i++)
                         {
-                            attendNum++;
+                            totalNum++;
+                            if (dtt.Rows[i]["Column6"].ToString() == "是")
+                            {
+                                attendNum++;
+                            }
+                            else
+                                unattendNum++;
                         }
-                        else
-                            unattendNum++;
+                        check.SQL.SQL.updateNumber(totalNum.ToString(), attendNum.ToString(), unattendNum.ToString(), meetID);
+                        //co.refresh2(GetDgvToTable(skinDataGridView1));
                     }
-                    check.SQL.SQL.updateNumber(totalNum.ToString(), attendNum.ToString(), unattendNum.ToString(), meetID);
-                    //co.refresh2(GetDgvToTable(skinDataGridView1));
+                }
+                else
+                {
+                    MessageBox.Show("当前会议无数据，请重新选择会议！", "提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 }
             }
-            else 
+            catch (Exception)
             {
-                MessageBox.Show("当前会议无数据，请重新选择会议！","提示信息",MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                MessageBox.Show("当前会议无数据，请重新选择会议！", "提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             }
+           // MainDt = GetDgvToTable(skinDataGridView1);
+           
            
         }
         void co_ChangeFlag()
@@ -678,7 +688,7 @@ namespace check
             catch (Exception)
             {
 
-                MessageBox.Show("网络异常！");
+                MessageBox.Show("当前无会议，同步失败！");
             }
 
         }
