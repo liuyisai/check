@@ -106,6 +106,25 @@ namespace check
                 countFlag = 1;
                 co.ChangeFlag+=co_ChangeFlag;
                 co.ClickFlag += co_ClickFlag;
+                if (countFlag == 1)
+                {
+                    DataTable dtt = GetDgvToTable(skinDataGridView1);
+                    int totalNum = 0;
+                    int attendNum = 0;
+                    int unattendNum = 0;
+                    for (int i = 0; i < dtt.Rows.Count; i++)
+                    {
+                        totalNum++;
+                        if (dtt.Rows[i]["Column6"].ToString() == "是")
+                        {
+                            attendNum++;
+                        }
+                        else
+                            unattendNum++;
+                    }
+                    check.SQL.SQL.updateNumber(totalNum.ToString(), attendNum.ToString(), unattendNum.ToString(), meetID);
+                    //co.refresh2(GetDgvToTable(skinDataGridView1));
+                }
             }
             else 
             {
